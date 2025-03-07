@@ -1,3 +1,5 @@
+import { Link } from 'react-router';
+
 export default function Navigation(){
     return (
         <div className="top-area">
@@ -12,7 +14,7 @@ export default function Navigation(){
                         <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                             <i className="fa fa-bars"></i>
                         </button>
-                        <a className="navbar-brand" href="index.html">carlog<span></span></a>
+                        <Link className="navbar-brand" to="/">carlog<span></span></Link>
 
                     </div>
                   
@@ -20,12 +22,13 @@ export default function Navigation(){
                     
                     <div className="collapse navbar-collapse menu-ui-design" id="navbar-menu">
                         <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                            <li className=" scroll"><a href="#home">home</a></li>
-                            <li className="scroll"><a href="#service">service</a></li>
-                            <li className="scroll"><a href="#featured-cars">featured cars</a></li>
-                            <li className="scroll"><a href="#new-cars">new cars</a></li>
-                            <li className="scroll"><a href="#brand">brands</a></li>
-                            <li className="scroll"><a href="#contact">contact</a></li>
+                            <li className=" scroll"><Link to="/">home</Link></li>
+                            <li className="scroll"><Link to="/cars">cars</Link></li>
+                            <li className="scroll"><Link to="/contacts">contacts</Link></li>
+                            <li className="scroll"><Link to="/auth/profile">profile</Link></li>
+                            <li className="scroll"><Link to="/auth/login">login</Link></li>
+                            <li className="scroll"><Link to="/auth/register">register</Link></li>
+                            <li className="scroll"><Link to="/auth/logout">logout</Link></li>
                         </ul>
                     </div>
                 </div>

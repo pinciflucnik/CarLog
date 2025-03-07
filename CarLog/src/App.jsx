@@ -1,3 +1,5 @@
+
+import { Routes, Route } from 'react-router'
 import { useState } from 'react'
 import "./assets/css/style.css"
 import Navigation from './components/navigation/Navigation'
@@ -13,16 +15,12 @@ function App() {
     <section className="welcome-hero">
 
       <Navigation />
-      <div className='my-wrapper'>
-        {/* <Home /> */}
-
-        {/* <Login /> */}
-
-        {/* <Register /> */}
-
-        <CarListItem />
-
-      </div>
+      <Routes>
+         <Route path='/' element={<Home />}/> 
+         <Route path='/auth/register' element={<Register />}/> 
+         <Route path='/auth/login' element={<Login />}/> 
+        <Route path='/cars' element={<CarListItem />} />
+      </Routes>
     </section>
   )
 }
