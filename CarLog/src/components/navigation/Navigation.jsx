@@ -1,6 +1,5 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router';
-import useAuth from '../../hooks/UseAuth';
 import AuthContext from '../../context/AuthContext';
 
 export default function Navigation(){

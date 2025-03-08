@@ -3,7 +3,7 @@ import useForm from "../../../hooks/UseForm";
 import useAuth from "../../../hooks/UseAuth";
 
 export default function Login() {
-    const { loginHandler } = useAuth
+    const { loginHandler } = useAuth()
     const { values, onChange, onSubmit } = useForm(loginHandler, {email:'', password:''})
     return (
         <div className='my-wrapper'>

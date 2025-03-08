@@ -1,14 +1,14 @@
 
 import { Routes, Route } from 'react-router'
-import { useState } from 'react'
+
 import "./assets/css/style.css"
+
 import Navigation from './components/navigation/Navigation'
 import Home from './components/home/Home'
 import Login from './components/auth/login/Login'
 import Register from './components/auth/register/Register'
 import CarListItem from './components/cars/car-list-item/CarListItem'
-import useAuth from './hooks/UseAuth'
-import AuthContext, { AuthProvider } from './context/AuthContext'
+import { AuthProvider } from './context/AuthContext'
 
 function App() {
   return (
