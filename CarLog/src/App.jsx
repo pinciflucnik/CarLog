@@ -7,21 +7,26 @@ import Home from './components/home/Home'
 import Login from './components/auth/login/Login'
 import Register from './components/auth/register/Register'
 import CarListItem from './components/cars/car-list-item/CarListItem'
+import AuthContext from './context/authContext'
+import useAuth from './hooks/UseAuth'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { user } = useAuth();
+
 
   return (
-    <section className="welcome-hero">
+    <AuthContext.Provider value={user}>
+      <section className="welcome-hero">
 
-      <Navigation />
-      <Routes>
-         <Route path='/' element={<Home />}/> 
-         <Route path='/auth/register' element={<Register />}/> 
-         <Route path='/auth/login' element={<Login />}/> 
-        <Route path='/cars' element={<CarListItem />} />
-      </Routes>
-    </section>
+        <Navigation />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/auth/register' element={<Register />} />
+          <Route path='/auth/login' element={<Login />} />
+          <Route path='/cars' element={<CarListItem />} />
+        </Routes>
+      </section>
+    </AuthContext.Provider>
   )
 }
 
