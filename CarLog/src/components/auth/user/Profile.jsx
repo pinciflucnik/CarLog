@@ -17,7 +17,9 @@ export default function Profile() {
                     </div>
                 </div>
             </div>
-            <CarListItem />
+            <div className="container">
+                <CarListItem />
+            </div>
         </>
     )
 }
