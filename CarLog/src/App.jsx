@@ -7,15 +7,12 @@ import Home from './components/home/Home'
 import Login from './components/auth/login/Login'
 import Register from './components/auth/register/Register'
 import CarListItem from './components/cars/car-list-item/CarListItem'
-import AuthContext from './context/authContext'
 import useAuth from './hooks/UseAuth'
+import AuthContext, { AuthProvider } from './context/AuthContext'
 
 function App() {
-  const { user } = useAuth();
-
-
   return (
-    <AuthContext.Provider value={user}>
+    <AuthProvider>
       <section className="welcome-hero">
 
         <Navigation />
@@ -26,8 +23,8 @@ function App() {
           <Route path='/cars' element={<CarListItem />} />
         </Routes>
       </section>
-    </AuthContext.Provider>
-  )
+      </AuthProvider>
+    )
 }
 
 export default App

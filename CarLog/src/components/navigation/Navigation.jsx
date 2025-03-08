@@ -1,10 +1,15 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link } from 'react-router';
-import AuthContext from '../../context/authContext';
 import useAuth from '../../hooks/UseAuth';
+import AuthContext from '../../context/AuthContext';
 
 export default function Navigation(){
-    const { isAuthenticated } = useAuth();
+    const { auth } = useContext(AuthContext);  
+    console.log('navigation');
+    
+    console.log(auth);
+    
+      
     return (
         <div className="top-area">
         <div className="header-area">
@@ -29,10 +34,14 @@ export default function Navigation(){
                             <li className=" scroll"><Link to="/">home</Link></li>
                             <li className="scroll"><Link to="/cars">cars</Link></li>
                             <li className="scroll"><Link to="/contacts">contacts</Link></li>
-                            {isAuthenticated && <li className="scroll"><Link to="/auth/profile">profile</Link></li>}
-                            {!isAuthenticated && <li className="scroll"><Link to="/auth/login">login</Link></li>}
-                            {!isAuthenticated && <li className="scroll"><Link to="/auth/register">register</Link></li>}
-                            {isAuthenticated && <li className="scroll"><Link to="/auth/logout">logout</Link></li>}
+                            {auth.email && (<li className="scroll"><Link to="/auth/profile">profile</Link></li>)}
+                            {!auth.email && (<li className="scroll"><Link to="/auth/login">login</Link></li>)}
+                            {!auth.email && (<li className="scroll"><Link to="/auth/register">register</Link></li>)}
+                            {auth.email && (<li className="scroll"><Link to="/auth/logout">logout</Link></li>)}
+                            {/* {isAuthenticated && (<li className="scroll"><Link to="/auth/profile">profile</Link></li>)}
+                            {!isAuthenticated && (<li className="scroll"><Link to="/auth/login">login</Link></li>)}
+                            {!isAuthenticated && (<li className="scroll"><Link to="/auth/register">register</Link></li>)}
+                            {isAuthenticated && (<li className="scroll"><Link to="/auth/logout">logout</Link></li>)} */}
                         </ul>
                     </div>
                 </div>
