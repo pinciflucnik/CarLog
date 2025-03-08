@@ -1,10 +1,5 @@
 const request = async (method, url, data, token) => {
     const options = {};
-    console.log(method);
-    console.log(url);
-    console.log(data);
-    console.log(token);
-
 
     if (data) {
         options.body = JSON.stringify(data);

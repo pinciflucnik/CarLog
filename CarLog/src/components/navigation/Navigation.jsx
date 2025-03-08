@@ -1,6 +1,10 @@
+import { useContext } from 'react';
 import { Link } from 'react-router';
+import AuthContext from '../../context/authContext';
+import useAuth from '../../hooks/UseAuth';
 
 export default function Navigation(){
+    const { isAuthenticated } = useAuth();
     return (
         <div className="top-area">
         <div className="header-area">
@@ -25,10 +29,10 @@ export default function Navigation(){
                             <li className=" scroll"><Link to="/">home</Link></li>
                             <li className="scroll"><Link to="/cars">cars</Link></li>
                             <li className="scroll"><Link to="/contacts">contacts</Link></li>
-                            <li className="scroll"><Link to="/auth/profile">profile</Link></li>
-                            <li className="scroll"><Link to="/auth/login">login</Link></li>
-                            <li className="scroll"><Link to="/auth/register">register</Link></li>
-                            <li className="scroll"><Link to="/auth/logout">logout</Link></li>
+                            {isAuthenticated && <li className="scroll"><Link to="/auth/profile">profile</Link></li>}
+                            {!isAuthenticated && <li className="scroll"><Link to="/auth/login">login</Link></li>}
+                            {!isAuthenticated && <li className="scroll"><Link to="/auth/register">register</Link></li>}
+                            {isAuthenticated && <li className="scroll"><Link to="/auth/logout">logout</Link></li>}
                         </ul>
                     </div>
                 </div>
