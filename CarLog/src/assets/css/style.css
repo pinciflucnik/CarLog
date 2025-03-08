@@ -457,6 +457,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
 
 /*single-testimonial-box */
 .single-testimonial-box  {
+    background-color: white;
     padding: 50px 30px 57px;
     text-align: center;
     border: 1px solid #dadfe9;
@@ -779,4 +780,26 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
 }
 .error-text{
     color: white;
+}
+.user-profile{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+.profile-picture{
+    width: 250px;
+    height: auto;
+    overflow: hidden;
+    border-radius: 3px;
+}
+.user-profile h1{
+    color: white;
+    font-size: 2em;
+    line-height: 166px;
+}
+.user-info{
+    display: flex;
+    flex-grow: 1;
+    align-content: center;
+    justify-content: center;
 }

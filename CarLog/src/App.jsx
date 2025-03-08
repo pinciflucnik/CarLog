@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router'
 import "./assets/css/style.css"
 
 import { AuthProvider } from './context/AuthContext'
+import { ErrorProvider } from './context/ErrorContext'
 
 import Navigation from './components/navigation/Navigation'
 import Home from './components/home/Home'
@@ -12,7 +13,7 @@ import Register from './components/auth/register/Register'
 import CarListItem from './components/cars/car-list-item/CarListItem'
 import Logout from './components/auth/logout/Logout'
 import ErrorMessage from './components/error/ErrorMessage'
-import { ErrorProvider } from './context/ErrorContext'
+import Profile from './components/auth/user/Profile'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/auth/register' element={<Register />} />
             <Route path='/auth/login' element={<Login />} />
+            <Route path='/auth/profile' element={<Profile />} />
             <Route path='/auth/logout' element={<Logout />} />
             <Route path='/cars' element={<CarListItem />} />
           </Routes>
