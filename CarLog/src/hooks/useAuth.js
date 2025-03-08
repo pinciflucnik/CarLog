@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 
-import { register, login } from "../services/authService"
+import { register, login, logout } from "../services/authService"
 import AuthContext from "../context/AuthContext";
 
 
@@ -34,8 +34,18 @@ export default function useAuth(){
 
     }
 
+    const logoutHandler = async (token) => {
+        
+        await logout(token)
+
+        authSetter({});
+
+        navigate('/');
+    }
+
     return {
         registerHandler,
-        loginHandler
+        loginHandler,
+        logoutHandler,
     }
 }

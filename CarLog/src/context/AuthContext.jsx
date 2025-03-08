@@ -9,6 +9,7 @@ export const AuthProvider = ({children}) => {
         setAuth(data)
     }
     
+    console.log(auth);
     
     
     return (

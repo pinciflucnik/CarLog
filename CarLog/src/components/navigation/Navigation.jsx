@@ -4,10 +4,6 @@ import AuthContext from '../../context/AuthContext';
 
 export default function Navigation(){
     const { auth } = useContext(AuthContext);  
-    console.log('navigation');
-    
-    console.log(auth);
-    
       
     return (
         <div className="top-area">
