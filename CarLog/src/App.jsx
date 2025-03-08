@@ -11,6 +11,7 @@ import Login from './components/auth/login/Login'
 import Register from './components/auth/register/Register'
 import CarListItem from './components/cars/car-list-item/CarListItem'
 import Logout from './components/auth/logout/Logout'
+import ErrorMessage from './components/error/ErrorMessage'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <section className="welcome-hero">
 
         <Navigation />
+        <ErrorMessage />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/auth/register' element={<Register />} />

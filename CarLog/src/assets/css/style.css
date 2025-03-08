@@ -358,7 +358,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
     margin: 35px 0 20px;
 }
 .single-service-item h2 a span {text-transform:  lowercase;}
-.single-service-item p {padding-bottom: 35px;text-transform: initial;position: relative;}
+.single-service-item p {padding-bottom: 10px;text-transform: initial;position: relative;}
 .single-service-item p:before {
     position: absolute;
     content: "";
@@ -769,4 +769,14 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+}
+.error-box{
+    position: absolute;
+    left: 80%;
+    background-color: #D62828;
+    border-radius: 3px;
+    padding: 10px;
+}
+.error-text{
+    color: white;
 }
