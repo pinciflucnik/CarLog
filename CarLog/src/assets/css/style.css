@@ -803,6 +803,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
     color: white;
     font-size: 2em;
     line-height: 166px;
+    text-transform: none;
 }
 .user-info{
     display: flex;

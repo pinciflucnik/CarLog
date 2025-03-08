@@ -13,7 +13,7 @@ export default function Profile() {
 
                     </div>
                     <div className="user-info">
-                        <h1>Hello {auth.email}</h1>
+                        <h1>Hello, {auth.username}</h1>
                     </div>
                 </div>
             </div>

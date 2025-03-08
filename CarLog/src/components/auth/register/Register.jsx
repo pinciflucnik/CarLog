@@ -8,6 +8,7 @@ export default function Register() {
         email: '',
         password: '',
         rePass: '',
+        username: '',
     });
 
     return (
@@ -16,6 +17,9 @@ export default function Register() {
             <div className="login-container">
                 <form className="login-form" onSubmit={onSubmit}>
                     <h2>Register</h2>
+                    <label htmlFor="username">Username:</label>
+                    <input type="username" id="username" name="username" autoComplete="new-username" value={values.username} onChange={onChange} required />
+
                     <label htmlFor="email">Email:</label>
                     <input type="email" id="email" name="email" autoComplete="new-email" value={values.email} onChange={onChange} required />
 

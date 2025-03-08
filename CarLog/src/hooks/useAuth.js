@@ -12,13 +12,15 @@ export default function useAuth(){
     const navigate = useNavigate();
 
     const registerHandler = async (data) => {
+        console.log(data.username);
+        
         if(data.password !== data.rePass){
             return errorSetter(new Error('Password mismatch!'))
         }
         try {
-            const result = await register(data.email, data.password);
+            const result = await register(data.email, data.password, data.username);
             
-            authSetter({email: result.email, accessToken: result.accessToken, id: result._id});
+            authSetter({email: result.email, accessToken: result.accessToken, id: result._id, username: result.username});
     
             //redirect to profile
             navigate('/');
@@ -32,7 +34,7 @@ export default function useAuth(){
         try {
             const result = await login(data.email, data.password);
     
-            authSetter({email: result.email, accessToken: result.accessToken, id: result._id});
+            authSetter({email: result.email, accessToken: result.accessToken, id: result._id, username: result.username});
             
             //redirect to profile
             navigate('/');

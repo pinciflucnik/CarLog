@@ -28,6 +28,7 @@ export default function Navigation(){
                         <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                             <li className=" scroll"><Link to="/">home</Link></li>
                             <li className="scroll"><Link to="/cars">cars</Link></li>
+                            {auth.email && (<li className="scroll"><Link to="/cars/add-car">add car</Link></li>)}
                             <li className="scroll"><Link to="/contacts">contacts</Link></li>
                             {auth.email && (<li className="scroll"><Link to="/auth/profile">profile</Link></li>)}
                             {!auth.email && (<li className="scroll"><Link to="/auth/login">login</Link></li>)}
