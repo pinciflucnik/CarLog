@@ -33,10 +33,6 @@ export default function Navigation(){
                             {!auth.email && (<li className="scroll"><Link to="/auth/login">login</Link></li>)}
                             {!auth.email && (<li className="scroll"><Link to="/auth/register">register</Link></li>)}
                             {auth.email && (<li className="scroll"><Link to="/auth/logout">logout</Link></li>)}
-                            {/* {isAuthenticated && (<li className="scroll"><Link to="/auth/profile">profile</Link></li>)}
-                            {!isAuthenticated && (<li className="scroll"><Link to="/auth/login">login</Link></li>)}
-                            {!isAuthenticated && (<li className="scroll"><Link to="/auth/register">register</Link></li>)}
-                            {isAuthenticated && (<li className="scroll"><Link to="/auth/logout">logout</Link></li>)} */}
                         </ul>
                     </div>
                 </div>

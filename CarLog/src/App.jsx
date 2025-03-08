@@ -12,24 +12,27 @@ import Register from './components/auth/register/Register'
 import CarListItem from './components/cars/car-list-item/CarListItem'
 import Logout from './components/auth/logout/Logout'
 import ErrorMessage from './components/error/ErrorMessage'
+import { ErrorProvider } from './context/ErrorContext'
 
 function App() {
   return (
-    <AuthProvider>
-      <section className="welcome-hero">
+    <ErrorProvider>
+      <AuthProvider>
+        <section className="welcome-hero">
 
-        <Navigation />
-        <ErrorMessage />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/auth/register' element={<Register />} />
-          <Route path='/auth/login' element={<Login />} />
-          <Route path='/auth/logout' element={<Logout />} />
-          <Route path='/cars' element={<CarListItem />} />
-        </Routes>
-      </section>
+          <Navigation />
+          <ErrorMessage />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/auth/register' element={<Register />} />
+            <Route path='/auth/login' element={<Login />} />
+            <Route path='/auth/logout' element={<Logout />} />
+            <Route path='/cars' element={<CarListItem />} />
+          </Routes>
+        </section>
       </AuthProvider>
-    )
+    </ErrorProvider>
+  )
 }
 
 export default App
