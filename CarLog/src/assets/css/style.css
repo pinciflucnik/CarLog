@@ -251,6 +251,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
     display: inline-block;
     width: 230px;
     height: 60px;
+    line-height: 60px;
     background: #D62828;
     color: #fff;
     border-radius: 3px;
