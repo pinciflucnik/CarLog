@@ -1,7 +1,12 @@
+import { useContext } from "react";
+import useCars from "../../../hooks/useCars";
 import useForm from "../../../hooks/UseForm"
+import AuthContext from "../../../context/AuthContext";
 
 export default function CreateCar() {
-    const { values, onChange, onSubmit } = useForm(() => {return},{
+    const { addCarHandler } = useCars();
+    const { auth } = useContext(AuthContext);
+    const { values, onChange, onSubmit } = useForm((data) => addCarHandler(data, auth.accessToken),{
         make: '',
         model: '',
         capacity: '',

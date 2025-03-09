@@ -1,6 +1,7 @@
 const request = async (method, url, data, token) => {
     const options = {};
     
+    
     if (data) {
         options.body = JSON.stringify(data);
         options.headers = {
