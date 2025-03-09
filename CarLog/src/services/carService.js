@@ -7,3 +7,10 @@ export const create = async (data, token) => {
     const response = await request.post(`${baseUrl}`, data, token);
     return response
 }
+
+export const getAll = async () => {
+    const response = await request.get(`${baseUrl}`);
+    const result = await response.json();
+
+    return result;
+}

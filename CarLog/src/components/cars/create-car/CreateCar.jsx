@@ -6,13 +6,14 @@ import AuthContext from "../../../context/AuthContext";
 export default function CreateCar() {
     const { addCarHandler } = useCars();
     const { auth } = useContext(AuthContext);
-    const { values, onChange, onSubmit } = useForm((data) => addCarHandler(data, auth.accessToken),{
+    const { values, file, onFileSelect, onChange, onSubmit } = useForm((data) => addCarHandler(data, auth.accessToken, file),{
         make: '',
         model: '',
         capacity: '',
         power: '',
         fuel: '',
         odometer: '',
+        picture: '',
     });
     return (
         <div className="container add-car">
@@ -43,6 +44,9 @@ export default function CreateCar() {
                         <label htmlFor="odometer">Odometer (km):</label>
                         <input type="number" id="odometer" name="odometer" value={values.odometer} onChange={onChange} required />
 
+                        <label htmlFor="picture">Picture:</label>
+                        <input type="file" id="picture" name="picture" value={values.picture} onChange={onFileSelect} required />
+                        
                         <button type="submit">Add Car</button>
                     </form>
                 </div>
