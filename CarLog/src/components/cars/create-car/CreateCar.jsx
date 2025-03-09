@@ -1,24 +1,34 @@
+import useForm from "../../../hooks/UseForm"
+
 export default function CreateCar() {
+    const { values, onChange, onSubmit } = useForm(() => {return},{
+        make: '',
+        model: '',
+        capacity: '',
+        power: '',
+        fuel: '',
+        odometer: '',
+    });
     return (
         <div className="container add-car">
             <div className="col-md-4 col-sm-6">
                 <div className="form-container">
-                    <form className="car-form">
+                    <form className="car-form" onSubmit={onSubmit}>
                         <h2>Add New Car</h2>
                         <label htmlFor="make">Make:</label>
-                        <input type="text" id="make" name="make" required />
+                        <input type="text" id="make" name="make" value={values.make} onChange={onChange} required />
 
                         <label htmlFor="model">Model:</label>
-                        <input type="text" id="model" name="model" required />
+                        <input type="text" id="model" name="model" value={values.model} onChange={onChange} required />
 
-                        <label htmlFor="engine_capacity">Engine Capacity (cc):</label>
-                        <input type="number" id="engine_capacity" name="engine_capacity" required />
+                        <label htmlFor="capacity">Engine Capacity (cc):</label>
+                        <input type="number" id="capacity" name="capacity" value={values.capacity} onChange={onChange} required />
 
                         <label htmlFor="power">Power (hp):</label>
-                        <input type="number" id="power" name="power" required />
+                        <input type="number" id="power" name="power" value={values.power} onChange={onChange} required />
 
-                        <label htmlFor="fuel_type">Fuel Type:</label>
-                        <select id="fuel_type" name="fuel_type" required>
+                        <label htmlFor="fuel">Fuel Type:</label>
+                        <select id="fuel" name="fuel" value={values.fuel} onChange={onChange} required>
                             <option value="petrol">Petrol</option>
                             <option value="diesel">Diesel</option>
                             <option value="LPG">LPG</option>
@@ -26,7 +36,7 @@ export default function CreateCar() {
                         </select>
 
                         <label htmlFor="odometer">Odometer (km):</label>
-                        <input type="number" id="odometer" name="odometer" required />
+                        <input type="number" id="odometer" name="odometer" value={values.odometer} onChange={onChange} required />
 
                         <button type="submit">Add Car</button>
                     </form>
