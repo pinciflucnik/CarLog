@@ -11,7 +11,7 @@ export default function CreateCar() {
         model: '',
         capacity: '',
         power: '',
-        fuel: '',
+        fuel: 'petrol',
         odometer: '',
         picture: '',
     });
@@ -45,7 +45,7 @@ export default function CreateCar() {
                         <input type="number" id="odometer" name="odometer" value={values.odometer} onChange={onChange} required />
 
                         <label htmlFor="picture">Picture:</label>
-                        <input type="file" id="picture" name="picture" value={values.picture} onChange={onFileSelect} required />
+                        <input type="file" id="picture" name="picture" value={values.picture} onChange={onFileSelect} />
                         
                         <button type="submit">Add Car</button>
                     </form>

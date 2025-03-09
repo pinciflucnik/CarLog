@@ -19,10 +19,13 @@ export default function useCars() {
             model: data.model.toUpperCase()
         }
 
+        console.log('add car handler');
+        console.log(file);
+        
 
 
         try {
-            if (file) {
+            if (file.name) {
                 const formPicture = new FormData();
                 formPicture.append("file", file);
                 formPicture.append("upload_preset", "car_photos");
@@ -58,7 +61,9 @@ export default function useCars() {
 
     const getAllHandler = async () => {
         try {
-            return await cars.getAll();
+            const list = await cars.getAll();
+            return list
+            
         } catch (error) {
             errorSetter(error)
         }
