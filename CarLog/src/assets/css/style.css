@@ -811,3 +811,46 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
     align-content: center;
     justify-content: center;
 }
+.form-container {
+    background: transparent;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.car-form {
+    display: flex;
+    flex-direction: column;
+}
+.car-form h2 {
+    margin-bottom: 15px;
+}
+.car-form label {
+    margin-bottom: 5px;
+}
+.car-form input, .car-form select {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.car-form button {
+    background-color: #D62828;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.car-form button:hover {
+    background-color: #a51d1d;
+}
+.add-car{
+    display: flex;
+    justify-content: center;
+}
+.add-car button{
+    margin-top: 15px;
+}
+.add-car input, select{
+    color: black;
+}
