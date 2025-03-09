@@ -49,7 +49,7 @@ export default function useCars() {
 
 
             //redirect to car details
-            navigate('/cars')
+            navigate(`/cars/${newCar._id}/details`)
 
         } catch (error) {
             console.log(error);

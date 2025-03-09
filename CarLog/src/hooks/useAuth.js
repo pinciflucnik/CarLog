@@ -53,7 +53,7 @@ export default function useAuth(){
             authSetter({email: result.email, accessToken: result.accessToken, id: result._id, username: result.username});
     
             //redirect to profile
-            navigate('/');
+            navigate('/auth/profile');
             
         } catch (error) {
             errorSetter(error)
@@ -67,7 +67,7 @@ export default function useAuth(){
             authSetter({email: result.email, accessToken: result.accessToken, id: result._id, username: result.username});
             
             //redirect to profile
-            navigate('/');
+            navigate('/auth/profile');
             
         } catch (error) {
             errorSetter(error)
