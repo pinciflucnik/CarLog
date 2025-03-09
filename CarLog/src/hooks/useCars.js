@@ -69,14 +69,31 @@ export default function useCars() {
     }
     
     const getMyHandler = async (id, token) => {
-        const list = await cars.getMyCars(id, token)
-        return list;
+        try {
+            const list = await cars.getMyCars(id, token)
+            return list;
+            
+        } catch (error) {
+            errorSetter(error)
+        }
+    }
+
+    const getOneHandler = async (id) => {
+
+        try {
+            const car = await cars.getOne(id)
+            return car;
+            
+        } catch (error) {
+            errorSetter(error)
+        }
     }
 
 
     return {
         addCarHandler,
         getAllHandler,
-        getMyHandler
+        getMyHandler,
+        getOneHandler
     }
 }

@@ -859,9 +859,10 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
     margin-top: 40px;
 }
 .new-cars-img {
-    max-width: 640px;
-    max-height: 640px;
+    max-width: 350px;
+    max-height: 263px;
     margin-bottom: 25px;
+    overflow: hidden;
 }
 .new-cars-img img{
     border-radius: 5px;
