@@ -3,13 +3,25 @@ import { Link, useParams } from "react-router";
 
 import useCars from "../../../hooks/useCars";
 import AuthContext from "../../../context/AuthContext";
+import AddRefueling from "../car-add-refueling/AddRefueling";
+import AddMaintenance from "../car-add-maintetance/AddMeintenance";
 
 export default function CarDetails() {
     const [isOwner, setIsOwner] = useState(false);
+    const [toggleModals, setToggle] = useState({});
     const [car, setCar] = useState({});
     const { auth } = useContext(AuthContext)
     const { carId } = useParams();
     const { getOneHandler } = useCars();
+
+    function modalToggle(e){
+        console.log(e.target.value);
+        setToggle({[e.target.value]: true})
+    }
+    console.log('toggle modals ---> ');
+    console.log(toggleModals);
+    
+    
     
     useEffect(()=> {
         const getCar = async () => {
@@ -61,7 +73,7 @@ export default function CarDetails() {
                                     <p>Average fuel consumption: <span className="consumption">6.2l / 100km</span></p>
                                     <p className="new-cars-para2">Latest fuel consumption: 7.8l / 100km</p>
                                     <Link to='#' className="welcome-btn smaller">Refuelings</Link>
-                                    {isOwner && <Link to='#' className="welcome-btn smaller">Fill tank</Link>}
+                                    {isOwner && <button onClick={modalToggle} className="welcome-btn smaller" value="refuel">Fill tank</button>}
                                 </div>
                             </div>
 
@@ -73,14 +85,14 @@ export default function CarDetails() {
                                     <p>Maintenance cost so far: <span className="consumption">6200 BGN</span></p>
                                     <p className="new-cars-para2">Cost of last maintenance was: 1000BGN</p>
                                     <Link to='#' className="welcome-btn smaller">View list</Link>
-                                    {isOwner && <Link to='#' className="welcome-btn smaller special">Add new</Link>}
+                                    {isOwner && <button onClick={modalToggle} className="welcome-btn smaller special" value="maintenance" >Add new</button>}
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
+                {toggleModals.refuel && <AddRefueling close={setToggle}/>}
+                {toggleModals.maintenance && <AddMaintenance close={setToggle}/>}
             </div>
         </div>
 

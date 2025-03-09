@@ -264,7 +264,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
     transition: .3s linear;
 }
 .welcome-btn:hover{
-    background: #D62828;
+    background: #a51d1d;
 }
 /*.welcome-hero-txt*/
 
@@ -879,6 +879,19 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
     height: 50px;
     line-height: 50px;
     margin: 50px 10px 15px 10px;
+    font-size: 20px;
+    font-weight: 500;
+    
+}
+.smaller:hover{
+    display: inline-block;
+    text-decoration: none;
+    color: #444a57;
+    font-size: 20px;
+    padding: 0;
+    font-weight: 500;
+    text-transform: capitalize;
+
 }
 /* .special {
     line-height: 35px;
@@ -886,4 +899,30 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
 } */
 .inner{
     border-right: 2px solid #898787db;
+}
+.modal {
+    background-color: rgba(1, 1, 1, 0.495);
+}
+.second-body{
+    max-width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+.modal-body{
+    display: flex;
+    justify-content: center;
+}
+.modal-content{
+    margin-top: 40%;
+    background-color: #002f499c;
+}
+.second-body label{
+    text-align: center;
+}
+.close span{
+    color: yellow;
+}
+.my-modal{
+    display:inline;
 }
