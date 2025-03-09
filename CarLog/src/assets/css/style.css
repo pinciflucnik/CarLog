@@ -253,6 +253,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
     height: 60px;
     line-height: 60px;
     background: #D62828;
+    text-align: center;
     color: #fff;
     border-radius: 3px;
     margin-top: 55px;
@@ -392,7 +393,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
 }
 .new-cars-content{padding-top:96px;}
 /*.new-cars-txt*/
-.new-cars-txt {margin-left: 29px;margin-bottom: 30px;}
+.new-cars-txt {margin-top: 20px; margin-right: 10px; margin-bottom: 30px;}
 .new-cars-txt h2 a {
     font-size:  30px;
     font-weight:  500;
@@ -856,4 +857,32 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
 }
 .my-cars {
     margin-top: 40px;
+}
+.new-cars-img {
+    max-width: 640px;
+    max-height: 640px;
+    margin-bottom: 25px;
+}
+.new-cars-img img{
+    border-radius: 5px;
+}
+.new-cars-txt p{
+    color: white;
+}
+.consumption{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.smaller {
+    width: 130px;
+    height: 50px;
+    line-height: 50px;
+    margin: 50px 10px 15px 10px;
+}
+/* .special {
+    line-height: 35px;
+    font-size: 17px;
+} */
+.inner{
+    border-right: 2px solid #898787db;
 }

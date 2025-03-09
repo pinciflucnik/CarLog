@@ -6,7 +6,7 @@ export default function CarListItem({
     //remove my-wrapper when you get to all cars
     return (
         <div className="col-md-4 col-sm-6">
-            <Link to={`/cars/CARID/details`}>
+            <Link to={`/cars/${car._id}/details`}>
                 <div className="single-service-item">
                     <div className="single-service-icon">
                         <div className="featured-cars-img">
