@@ -5,15 +5,6 @@ export default function useForm(submitHandler, initialValues) {
     const [file, setFile] = useState({});
 
     const onChange = (e) => {
-        // if(e.target.type === 'file'){
-        //     console.log(e.target.files[0]);
-            
-        //     setValues(state => ({
-        //         ...state,
-        //         [e.target.name]: e.target.files[0]
-        //     }))
-
-        // }
         
         setValues(state => ({
             ...state,

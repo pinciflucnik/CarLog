@@ -15,6 +15,7 @@ import Logout from './components/auth/logout/Logout'
 import ErrorMessage from './components/error/ErrorMessage'
 import Profile from './components/auth/user/Profile'
 import CreateCar from './components/cars/create-car/CreateCar'
+import CarList from './components/cars/car-list/CarList'
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
             <Route path='/auth/login' element={<Login />} />
             <Route path='/auth/profile' element={<Profile />} />
             <Route path='/auth/logout' element={<Logout />} />
-            <Route path='/cars' element={<CarListItem />} />
+            <Route path='/cars' element={<CarList />} />
             <Route path='/cars/add-car' element={<CreateCar />} />
           </Routes>
         </section>

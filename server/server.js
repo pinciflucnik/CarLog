@@ -1347,7 +1347,7 @@
     };
     var seedData = {
         cars: {
-            "6ebaef42-59a7-4bc1-a075-7b7b7e06d1e2" : {
+            "6ebaef42-59a7-4bc1-a075-7b7b7e06d1e2": {
                 _ownerId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
                 make: "BMW",
                 model: "320",
@@ -1358,7 +1358,31 @@
                 picture: "https://res.cloudinary.com/dtwyysfkn/image/upload/v1741519871/qlhaei8wigyet6yozsyy.jpg",
                 _createdOn: 1741519871403,
                 _id: "6ebaef42-59a7-4bc1-a075-7b7b7e06d1e2"
-            }
+            },
+            "a35f68c9-c20e-4bf1-96c6-865a5ae523c1": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                make: "FORD",
+                model: "MONDEO",
+                capacity: "3000",
+                power: "219",
+                fuel: "petrol",
+                odometer: "340000",
+                picture: "https://res.cloudinary.com/dtwyysfkn/image/upload/v1741522158/u7rfqkefj2lvtn3kq5tn.jpg",
+                _createdOn: 1741522158540,
+                _id: "a35f68c9-c20e-4bf1-96c6-865a5ae523c1"
+            },
+            "b92a7e5c-c89b-4fc4-b537-39213045c3c7": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                make: "LADA",
+                model: "2105",
+                capacity: "1300",
+                power: "54",
+                fuel: "petrol",
+                odometer: "119999",
+                picture: "https://res.cloudinary.com/dtwyysfkn/image/upload/v1741519670/kuyqdei9ut5qqqwigwna.webp",
+                _createdOn: 1741523639450,
+                _id: "b92a7e5c-c89b-4fc4-b537-39213045c3c7"
+            },
         },
     };
     var rules$1 = {
