@@ -36,7 +36,6 @@ export default function useCars() {
                     ...formatedData,
                     picture: imageUrl
                 }
-                console.log(imageUrl);
             } else {
                 formatedData = {
                     ...formatedData,

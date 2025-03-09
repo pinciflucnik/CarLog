@@ -9,7 +9,7 @@ export default function Profile() {
             <div className="container">
                 <div className="col-md-4 col-sm-6 user-profile">
                     <div className="profile-picture">
-                        <img src="https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D" />
+                        <img src="https://res.cloudinary.com/dtwyysfkn/image/upload/v1741525990/xryrdd8hjapnzif3j8ie.jpg" />
 
                     </div>
                     <div className="user-info">
@@ -18,7 +18,7 @@ export default function Profile() {
                 </div>
             </div>
             <div className="container">
-                <CarListItem />
+                {/* <CarListItem /> */}
             </div>
         </>
     )

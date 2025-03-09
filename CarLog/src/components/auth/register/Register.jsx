@@ -4,7 +4,7 @@ import useForm from "../../../hooks/UseForm";
 
 export default function Register() {
     const { registerHandler } = useAuth();
-    const { values, onChange, onSubmit } = useForm(registerHandler, {
+    const { values, file, onFileSelect, onChange, onSubmit } = useForm((data) => registerHandler(data, file), {
         email: '',
         password: '',
         rePass: '',
@@ -28,6 +28,11 @@ export default function Register() {
 
                     <label htmlFor="rePass">Confirm password:</label>
                     <input type="password" id="rePass" name="rePass" autoComplete="repeat-password" value={values.rePass} onChange={onChange} required />
+
+
+                    {/* SERVER DOESN'T SUPPORT THIS */}
+                    {/* <label htmlFor="picture">Upload profile picture:</label>
+                    <input type="file" id="picture" name="picture" value={values.picture} onChange={onFileSelect} /> */}
 
                     <button type="submit">Login</button>
                 </form>

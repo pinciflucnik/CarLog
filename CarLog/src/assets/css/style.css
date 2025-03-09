@@ -436,7 +436,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
     align-items: center;
     justify-content: center;
     width: 300px;
-    height: auto;
+    height: 300px;
     overflow: hidden;
     border-radius: 3px;
     padding: 30px;
@@ -794,8 +794,8 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
     width: 100%;
 }
 .profile-picture{
-    width: 250px;
-    height: auto;
+    width: 180px;
+    height: 180px;
     overflow: hidden;
     border-radius: 3px;
 }

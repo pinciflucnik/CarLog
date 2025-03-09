@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router";
+import axios from 'axios';
 
 import { register, login, logout } from "../services/authService"
 import AuthContext from "../context/AuthContext";
 import ErrorContext from "../context/ErrorContext";
+
+const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dtwyysfkn/image/upload'
 
 
 export default function useAuth(){
@@ -11,14 +14,41 @@ export default function useAuth(){
     const { errorSetter } = useContext(ErrorContext);
     const navigate = useNavigate();
 
-    const registerHandler = async (data) => {
-        console.log(data.username);
+    const registerHandler = async (data, file) => {
+        console.log('register handler');
+        
         
         if(data.password !== data.rePass){
             return errorSetter(new Error('Password mismatch!'))
         }
+        let formatedData = data
         try {
-            const result = await register(data.email, data.password, data.username);
+            if (file.name) {
+                console.log('has file name');
+                console.log(file);
+                
+                const formPicture = new FormData();
+                formPicture.append("file", file);
+                formPicture.append("upload_preset", "profile_photos");
+
+                const response = await axios.post(`${CLOUDINARY_URL}`, formPicture);
+                const imageUrl = response.data.secure_url;
+                
+                formatedData = {
+                    ...formatedData,
+                    picture: imageUrl
+                }
+            } else {
+                formatedData = {
+                    ...formatedData,
+                    picture: 'https://res.cloudinary.com/dtwyysfkn/image/upload/v1741525990/xryrdd8hjapnzif3j8ie.jpg'
+                }
+      
+            }
+
+            const result = await register(data.email, data.password, data.username, formatedData.picture);
+            console.log(result);
+            
             
             authSetter({email: result.email, accessToken: result.accessToken, id: result._id, username: result.username});
     
