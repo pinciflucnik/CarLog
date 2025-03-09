@@ -61,16 +61,22 @@ export default function useCars() {
     const getAllHandler = async () => {
         try {
             const list = await cars.getAll();
-            return list
+            return list;
             
         } catch (error) {
             errorSetter(error)
         }
     }
+    
+    const getMyHandler = async (id, token) => {
+        const list = await cars.getMyCars(id, token)
+        return list;
+    }
 
 
     return {
         addCarHandler,
-        getAllHandler
+        getAllHandler,
+        getMyHandler
     }
 }

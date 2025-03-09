@@ -1,9 +1,21 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import AuthContext from "../../../context/AuthContext"
 import CarListItem from "../../cars/car-list-item/CarListItem"
+import useCars from "../../../hooks/useCars"
 
 export default function Profile() {
+    const [cars, setCars] = useState([]);
     const { auth } = useContext(AuthContext)
+    const { getMyHandler } = useCars();
+    useEffect(()=> {
+        (async ()=> {
+            const list = await getMyHandler(auth.id, auth.accessToken);
+            setCars(list);
+        })()
+    },[])
+
+    console.log(cars);
+    
     return (
         <>
             <div className="container">
@@ -17,8 +29,8 @@ export default function Profile() {
                     </div>
                 </div>
             </div>
-            <div className="container">
-                {/* <CarListItem /> */}
+            <div className="container my-cars">
+                {cars.map(car => <CarListItem key={car._id} car={car}/>)}
             </div>
         </>
     )

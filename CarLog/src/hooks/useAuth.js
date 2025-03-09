@@ -85,6 +85,10 @@ export default function useAuth(){
             navigate('/');
             
         } catch (error) {
+            if(error.code == 403){
+                authSetter({});
+            }
+            
             errorSetter(error)
         }
     }

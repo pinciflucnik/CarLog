@@ -854,3 +854,6 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
 .add-car input, select{
     color: black;
 }
+.my-cars {
+    margin-top: 40px;
+}
