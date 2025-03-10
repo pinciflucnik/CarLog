@@ -23,3 +23,7 @@ export const getOne = async (id) => {
     const result = await request.get(`${baseUrl}/${id}`);
     return result;
 }
+
+export const remove = async (id, token) => {
+    await request.remove(`${baseUrl}/${id}`, null, token)
+}

@@ -2,7 +2,6 @@ export default function AddRefueling({
     close
 }) {
 
-    console.log(close);
     
     return (
         <div className="modal my-modal" tabIndex="-1" role="dialog">

@@ -13,14 +13,12 @@ export default function useCars() {
     const addCarHandler = async (data, token, file) => {
 
         //format data here
-        let formatedData = {
+        let formattedData = {
             ...data,
             make: data.make.toUpperCase(),
             model: data.model.toUpperCase()
         }
 
-        console.log('add car handler');
-        console.log(file);
         
 
 
@@ -32,20 +30,19 @@ export default function useCars() {
 
                 const response = await axios.post(`${CLOUDINARY_URL}`, formPicture);
                 const imageUrl = response.data.secure_url;
-                formatedData = {
-                    ...formatedData,
+                formattedData = {
+                    ...formattedData,
                     picture: imageUrl
                 }
             } else {
-                formatedData = {
-                    ...formatedData,
+                formattedData = {
+                    ...formattedData,
                     picture: 'https://res.cloudinary.com/dtwyysfkn/image/upload/v1741519670/kuyqdei9ut5qqqwigwna.webp'
                 }
       
             }
 
-            const newCar = await cars.create(formatedData, token);
-            console.log(newCar);
+            const newCar = await cars.create(formattedData, token);
 
 
             //redirect to car details
@@ -89,11 +86,23 @@ export default function useCars() {
         }
     }
 
+    const deleteCarHandler = async (id, token) => {
+        try {
+            await cars.remove(id, token);
+            navigate('/cars')
+            
+        } catch (error) {
+            errorSetter(error)
+        }
+
+    }
+
 
     return {
         addCarHandler,
         getAllHandler,
         getMyHandler,
-        getOneHandler
+        getOneHandler,
+        deleteCarHandler,
     }
 }

@@ -18,6 +18,7 @@ import CreateCar from './components/cars/create-car/CreateCar'
 import CarList from './components/cars/car-list/CarList'
 import CarDetails from './components/cars/car-details/CarDetails'
 import { Footer } from './components/footer/Footer'
+import { CarDelete } from './components/cars/car-delete/CarDelete'
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path='/auth/logout' element={<Logout />} />
             <Route path='/cars' element={<CarList />} />
             <Route path='/cars/:carId/details' element={<CarDetails />} />
+            <Route path='/cars/:carId/delete' element={<CarDelete />} />
             <Route path='/cars/add-car' element={<CreateCar />} />
           </Routes>
         </section>

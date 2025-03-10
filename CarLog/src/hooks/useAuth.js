@@ -15,7 +15,6 @@ export default function useAuth(){
     const navigate = useNavigate();
 
     const registerHandler = async (data, file) => {
-        console.log('register handler');
         
         
         if(data.password !== data.rePass){
@@ -24,8 +23,6 @@ export default function useAuth(){
         let formatedData = data
         try {
             if (file.name) {
-                console.log('has file name');
-                console.log(file);
                 
                 const formPicture = new FormData();
                 formPicture.append("file", file);
@@ -47,7 +44,6 @@ export default function useAuth(){
             }
 
             const result = await register(data.email, data.password, data.username, formatedData.picture);
-            console.log(result);
             
             
             authSetter({email: result.email, accessToken: result.accessToken, id: result._id, username: result.username});

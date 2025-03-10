@@ -12,14 +12,18 @@ export default function CarDetails() {
     const [car, setCar] = useState({});
     const { auth } = useContext(AuthContext)
     const { carId } = useParams();
-    const { getOneHandler } = useCars();
+    const { getOneHandler, deleteCarHandler } = useCars();
+
+    function onDelete(e){
+        e.preventDefault()
+        deleteCarHandler(carId, auth.accessToken);
+    }
+
 
     function modalToggle(e){
         setToggle({[e.target.value]: true})
     }
-    
-    
-    
+        
     useEffect(()=> {
         const getCar = async () => {
             const result = await getOneHandler(carId);
@@ -56,6 +60,8 @@ export default function CarDetails() {
                                             <p>Engine size: {car.capacity}cc</p>
                                             <p>Engine power: {car.power}HP</p>
                                             <p>Fuel type: {car.fuel}</p>
+                                            {isOwner && <Link to={`/cars/${carId}/edit`} className="welcome-btn smaller">Edit</Link>}
+                                            {isOwner && <button onClick={onDelete} className="welcome-btn smaller">Delete</button>}
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +75,7 @@ export default function CarDetails() {
                                     <h2>Refuelings</h2>
                                     <p>Average fuel consumption: <span className="consumption">6.2l / 100km</span></p>
                                     <p className="new-cars-para2">Latest fuel consumption: 7.8l / 100km</p>
-                                    <Link to='#' className="welcome-btn smaller">Refuelings</Link>
+                                    <Link to={`/cars/${carId}/refuel-list`} className="welcome-btn smaller">Refuelings</Link>
                                     {isOwner && <button onClick={modalToggle} className="welcome-btn smaller" value="refuel">Fill tank</button>}
                                 </div>
                             </div>
@@ -81,7 +87,7 @@ export default function CarDetails() {
                                     <h2>Repairs and maintenance</h2>
                                     <p>Maintenance cost so far: <span className="consumption">6200 BGN</span></p>
                                     <p className="new-cars-para2">Cost of last maintenance was: 1000BGN</p>
-                                    <Link to='#' className="welcome-btn smaller">View list</Link>
+                                    <Link to={`/cars/${carId}/view-repairs`} className="welcome-btn smaller">View list</Link>
                                     {isOwner && <button onClick={modalToggle} className="welcome-btn smaller special" value="maintenance" >Add new</button>}
                                 </div>
                             </div>
