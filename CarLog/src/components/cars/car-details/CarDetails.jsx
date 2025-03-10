@@ -15,11 +15,8 @@ export default function CarDetails() {
     const { getOneHandler } = useCars();
 
     function modalToggle(e){
-        console.log(e.target.value);
         setToggle({[e.target.value]: true})
     }
-    console.log('toggle modals ---> ');
-    console.log(toggleModals);
     
     
     

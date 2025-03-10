@@ -17,6 +17,7 @@ import Profile from './components/auth/user/Profile'
 import CreateCar from './components/cars/create-car/CreateCar'
 import CarList from './components/cars/car-list/CarList'
 import CarDetails from './components/cars/car-details/CarDetails'
+import { Footer } from './components/footer/Footer'
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path='/cars/add-car' element={<CreateCar />} />
           </Routes>
         </section>
+        <Footer />
       </AuthProvider>
     </ErrorProvider>
   )
