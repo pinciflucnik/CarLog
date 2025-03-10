@@ -807,3 +807,11 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
 .footer p{
     margin-right: 15px;
 }
+.no-cars{
+    display: flex;
+    justify-content: center;
+}
+.no-cars h1{
+    font-size: 2em;
+    margin-top: 50px;
+}

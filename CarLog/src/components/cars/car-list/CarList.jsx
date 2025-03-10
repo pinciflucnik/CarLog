@@ -15,9 +15,14 @@ export default function CarList() {
 
     return (
         <div className="container add-car">
-                <div className="my-wrapper">
-                    {cars.map(car => <CarListItem key={car._id} car={car} />)}
+            {cars.length == 0 &&
+                <div className="col-md-12 no-cars">
+                    <h1>You haven't added any cars yet</h1>
                 </div>
+            }
+            <div className="my-wrapper">
+                {cars.map(car => <CarListItem key={car._id} car={car} />)}
+            </div>
         </div>
 
     )

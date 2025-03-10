@@ -7,15 +7,15 @@ export default function Profile() {
     const [cars, setCars] = useState([]);
     const { auth } = useContext(AuthContext)
     const { getMyHandler } = useCars();
-    useEffect(()=> {
-        (async ()=> {
+    useEffect(() => {
+        (async () => {
             const list = await getMyHandler(auth.id, auth.accessToken);
             setCars(list);
         })()
-    },[])
+    }, [])
 
     console.log(cars);
-    
+
     return (
         <>
             <div className="container">
@@ -30,7 +30,12 @@ export default function Profile() {
                 </div>
             </div>
             <div className="container my-cars">
-                {cars.map(car => <CarListItem key={car._id} car={car}/>)}
+                {cars.map(car => <CarListItem key={car._id} car={car} />)}
+                {cars.length == 0 && 
+                    <div className="col-md-12 no-cars">
+                        <h1>You haven't added any cars yet</h1>
+                    </div>
+                }
             </div>
         </>
     )
