@@ -55,6 +55,17 @@ export default function useCars() {
 
     }
 
+    const editCarHandler = async (carData, token) => {
+        try {
+            const editedCar = await cars.update(carData, token);
+            navigate(`/cars/${editedCar._id}/details`)
+        } catch (error) {
+            errorSetter(error);
+        }
+
+
+    }
+
     const getAllHandler = async () => {
         try {
             const list = await cars.getAll();
@@ -100,6 +111,7 @@ export default function useCars() {
 
     return {
         addCarHandler,
+        editCarHandler,
         getAllHandler,
         getMyHandler,
         getOneHandler,

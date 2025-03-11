@@ -10,15 +10,14 @@ import Navigation from './components/navigation/Navigation'
 import Home from './components/home/Home'
 import Login from './components/auth/login/Login'
 import Register from './components/auth/register/Register'
-import CarListItem from './components/cars/car-list-item/CarListItem'
 import Logout from './components/auth/logout/Logout'
 import ErrorMessage from './components/error/ErrorMessage'
 import Profile from './components/auth/user/Profile'
-import CreateCar from './components/cars/create-car/CreateCar'
 import CarList from './components/cars/car-list/CarList'
 import CarDetails from './components/cars/car-details/CarDetails'
-import { Footer } from './components/footer/Footer'
-import { CarDelete } from './components/cars/car-delete/CarDelete'
+import Footer from './components/footer/Footer'
+import CarCreate from './components/cars/car-create/CreateCar'
+import CarEdit from './components/cars/car-edit/CarEdit'
 
 function App() {
   return (
@@ -35,9 +34,9 @@ function App() {
             <Route path='/auth/profile' element={<Profile />} />
             <Route path='/auth/logout' element={<Logout />} />
             <Route path='/cars' element={<CarList />} />
+            <Route path='/cars/add-car' element={<CarCreate />} />
             <Route path='/cars/:carId/details' element={<CarDetails />} />
-            <Route path='/cars/:carId/delete' element={<CarDelete />} />
-            <Route path='/cars/add-car' element={<CreateCar />} />
+            <Route path='/cars/:carId/edit' element={<CarEdit />} />
           </Routes>
         </section>
         <Footer />

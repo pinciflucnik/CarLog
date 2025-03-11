@@ -27,3 +27,8 @@ export const getOne = async (id) => {
 export const remove = async (id, token) => {
     await request.remove(`${baseUrl}/${id}`, null, token)
 }
+
+export const update = async (data, token) => {
+    const result = await request.put(`${baseUrl}/${data._id}`, data, token)
+    return result
+}

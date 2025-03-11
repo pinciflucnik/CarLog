@@ -1,4 +1,4 @@
-export function Footer(){
+export default function Footer(){
 return (
     <div className="footer">
         <p>2025 copyright</p>

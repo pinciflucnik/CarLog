@@ -12,6 +12,9 @@ export default function useForm(submitHandler, initialValues) {
         }));
         
     };
+    const onLoad = (newValues) => {
+        setValues(newValues);
+    }
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -35,5 +38,6 @@ export default function useForm(submitHandler, initialValues) {
         onFileSelect,
         onChange,
         onSubmit,
+        onLoad,
     }
 }
