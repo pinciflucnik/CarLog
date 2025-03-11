@@ -94,8 +94,8 @@ export default function CarDetails() {
                         </div>
                     </div>
                 </div>
-                {toggleModals.refuel && <AddRefueling close={modalToggle}/>}
-                {toggleModals.maintenance && <AddMaintenance close={modalToggle}/>}
+                {toggleModals.refuel && <AddRefueling close={modalToggle} carId={carId}/>}
+                {toggleModals.maintenance && <AddMaintenance close={modalToggle} carId={carId}/>}
             </div>
         </div>
 

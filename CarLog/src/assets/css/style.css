@@ -815,3 +815,13 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
     font-size: 2em;
     margin-top: 50px;
 }
+.my-modal p{
+    color: #FCBF49;
+}
+.my-modal input{
+    color: black;
+}
+fieldset div{
+    display: flex;
+    justify-content: space-around;
+}
