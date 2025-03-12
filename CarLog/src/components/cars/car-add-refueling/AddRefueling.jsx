@@ -1,12 +1,19 @@
 import { useContext } from "react"
 import AuthContext from "../../../context/AuthContext"
 import useForm from "../../../hooks/UseForm"
+import useRefuel from "../../../hooks/useRefuel";
 
 export default function AddRefueling({
-    close,
+    modalClose,
     carId
 }) {
     const { auth } = useContext(AuthContext);
+    const { refuel } = useRefuel()
+
+    const submitHandler = async (data) => {
+        await refuel(data, carId, auth.accessToken);
+        modalClose({target: {value: "refuel"}})
+    }
 
     return (
         <div className="modal my-modal" tabIndex="-1" role="dialog">
@@ -14,17 +21,17 @@ export default function AddRefueling({
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title">Refuel</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={close}>
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={modalClose}>
                             <span>&times;</span>
                         </button>
                     </div>
-                    <form >
+                    <form action={submitHandler}>
                         <div className="modal-body">
                             <div className="second-body">
                                 <label htmlFor="km">Odometer reading</label>
                                 <input type="number" id="km" name="km" />
                                 <label htmlFor="liters">Liters</label>
-                                <input type="number" id="liters" name="liters" />
+                                <input type="number" id="liters" name="liters" step="any" />
                                 <fieldset required>
                                     <p>Is tank full?</p>
                                     <div>
@@ -40,7 +47,7 @@ export default function AddRefueling({
                         </div>
                         <div className="modal-footer">
                             <button type="submit" className="welcome-btn smaller">Save</button>
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={close}>Close</button>
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={modalClose}>Close</button>
                         </div>
                     </form>
                 </div >

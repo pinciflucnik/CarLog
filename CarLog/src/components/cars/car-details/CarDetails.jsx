@@ -20,8 +20,14 @@ export default function CarDetails() {
     }
 
 
-    function modalToggle(e){
+    function modalShow(e){
         setToggle({[e.target.value]: true})
+        
+    }
+    function modalClose(e){
+        setToggle({[e.target.value]: false})
+        console.log(e.target.value);
+        
     }
         
     useEffect(()=> {
@@ -76,7 +82,7 @@ export default function CarDetails() {
                                     <p>Average fuel consumption: <span className="consumption">6.2l / 100km</span></p>
                                     <p className="new-cars-para2">Latest fuel consumption: 7.8l / 100km</p>
                                     <Link to={`/cars/${carId}/refuel-list`} className="welcome-btn smaller">Refuelings</Link>
-                                    {isOwner && <button onClick={modalToggle} className="welcome-btn smaller" value="refuel">Fill tank</button>}
+                                    {isOwner && <button onClick={modalShow} className="welcome-btn smaller" value="refuel">Fill tank</button>}
                                 </div>
                             </div>
 
@@ -88,14 +94,14 @@ export default function CarDetails() {
                                     <p>Maintenance cost so far: <span className="consumption">6200 BGN</span></p>
                                     <p className="new-cars-para2">Cost of last maintenance was: 1000BGN</p>
                                     <Link to={`/cars/${carId}/view-repairs`} className="welcome-btn smaller">View list</Link>
-                                    {isOwner && <button onClick={modalToggle} className="welcome-btn smaller special" value="maintenance" >Add new</button>}
+                                    {isOwner && <button onClick={modalShow} className="welcome-btn smaller special" value="maintenance" >Add new</button>}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {toggleModals.refuel && <AddRefueling close={modalToggle} carId={carId}/>}
-                {toggleModals.maintenance && <AddMaintenance close={modalToggle} carId={carId}/>}
+                {toggleModals.refuel && <AddRefueling modalClose={modalClose} carId={carId}/>}
+                {toggleModals.maintenance && <AddMaintenance modalClose={modalClose} carId={carId}/>}
             </div>
         </div>
 

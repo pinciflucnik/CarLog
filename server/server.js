@@ -1384,6 +1384,26 @@
                 _id: "b92a7e5c-c89b-4fc4-b537-39213045c3c7"
             },
         },
+        refuels: {
+            "3d9492a7-2ebe-46e7-bc22-bebcb41d08df": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                km: "120449",
+                liters: "44.5",
+                full: "true",
+                carId: "b92a7e5c-c89b-4fc4-b537-39213045c3c7",
+                _createdOn: 1741771737604,
+                _id: "3d9492a7-2ebe-46e7-bc22-bebcb41d08df"
+            },
+            "3d9492a7-2ebe-46e7-bc22-bebcb41d08df": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                km: "120449",
+                liters: "44.5",
+                full: "true",
+                carId: "b92a7e5c-c89b-4fc4-b537-39213045c3c7",
+                _createdOn: 1741771737604,
+                _id: "3d9492a7-2ebe-46e7-bc22-bebcb41d08df"
+            }
+        },
     };
     var rules$1 = {
     	users: {
