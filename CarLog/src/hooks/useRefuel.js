@@ -47,6 +47,9 @@ export default function useRefuel() {
         let startKm = 0;
         let fullFound = 0;
         let totalLiters = 0;
+        if(data.length === 1){
+            startKm = car.odometer;
+        }
 
         data.map(r => {
             if(r.full === "true" && fullFound === 0){
