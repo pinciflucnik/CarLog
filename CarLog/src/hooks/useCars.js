@@ -16,7 +16,9 @@ export default function useCars() {
         let formattedData = {
             ...data,
             make: data.make.toUpperCase(),
-            model: data.model.toUpperCase()
+            model: data.model.toUpperCase(),
+            odometer : Number(data.odometer),
+            
         }
 
         

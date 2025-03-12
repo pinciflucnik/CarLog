@@ -1354,7 +1354,7 @@
                 capacity: "2000",
                 power: "177",
                 fuel: "diesel",
-                odometer: "287000",
+                odometer: 287000,
                 picture: "https://res.cloudinary.com/dtwyysfkn/image/upload/v1741519871/qlhaei8wigyet6yozsyy.jpg",
                 _createdOn: 1741519871403,
                 _id: "6ebaef42-59a7-4bc1-a075-7b7b7e06d1e2"
@@ -1366,7 +1366,7 @@
                 capacity: "3000",
                 power: "219",
                 fuel: "petrol",
-                odometer: "340000",
+                odometer: 340000,
                 picture: "https://res.cloudinary.com/dtwyysfkn/image/upload/v1741522158/u7rfqkefj2lvtn3kq5tn.jpg",
                 _createdOn: 1741522158540,
                 _id: "a35f68c9-c20e-4bf1-96c6-865a5ae523c1"
@@ -1378,31 +1378,62 @@
                 capacity: "1300",
                 power: "54",
                 fuel: "petrol",
-                odometer: "119999",
+                odometer: 119999,
                 picture: "https://res.cloudinary.com/dtwyysfkn/image/upload/v1741519670/kuyqdei9ut5qqqwigwna.webp",
                 _createdOn: 1741523639450,
                 _id: "b92a7e5c-c89b-4fc4-b537-39213045c3c7"
+            },
+            "4f83a530-ab4c-4de5-862a-d0636e5ccb1a": {
+                _ownerId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+                make: "BMW",
+                model: "M5",
+                capacity: "4900",
+                power: "400",
+                fuel: "petrol",
+                odometer: 250000,
+                picture: "https://res.cloudinary.com/dtwyysfkn/image/upload/v1741775702/soc7cmad6jqd8yrojnut.jpg",
+                _createdOn: 1741775702905,
+                _id: "4f83a530-ab4c-4de5-862a-d0636e5ccb1a"
             },
         },
         refuels: {
             "3d9492a7-2ebe-46e7-bc22-bebcb41d08df": {
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-                km: "120449",
-                liters: "44.5",
+                km: 120449,
+                liters: 44.5,
                 full: "true",
                 carId: "b92a7e5c-c89b-4fc4-b537-39213045c3c7",
                 _createdOn: 1741771737604,
                 _id: "3d9492a7-2ebe-46e7-bc22-bebcb41d08df"
             },
-            "3d9492a7-2ebe-46e7-bc22-bebcb41d08df": {
+            "ad6090a8-2d18-4d6a-a5a5-ffc15dfd9f2f": {
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-                km: "120449",
-                liters: "44.5",
+                km: 340500,
+                liters: 74,
+                full: "true",
+                carId: "a35f68c9-c20e-4bf1-96c6-865a5ae523c1",
+                _createdOn: 1741774080190,
+                _id: "ad6090a8-2d18-4d6a-a5a5-ffc15dfd9f2f"
+            },
+            "e034bf8f-491b-434c-803b-41b6addae07d":  {
+                _ownerId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+                km: 250300,
+                liters: 57,
+                full: "true",
+                carId: "4f83a530-ab4c-4de5-862a-d0636e5ccb1a",
+                _createdOn: 1741776248938,
+                _id: "e034bf8f-491b-434c-803b-41b6addae07d"
+            },
+            "02b7034b-d0b4-48c9-b03e-55aa81f38ff9":  {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                km: 120750,
+                liters: 32,
                 full: "true",
                 carId: "b92a7e5c-c89b-4fc4-b537-39213045c3c7",
-                _createdOn: 1741771737604,
-                _id: "3d9492a7-2ebe-46e7-bc22-bebcb41d08df"
+                _createdOn: 1741776443788,
+                _id: "02b7034b-d0b4-48c9-b03e-55aa81f38ff9"
             }
+
         },
     };
     var rules$1 = {

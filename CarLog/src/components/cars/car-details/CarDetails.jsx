@@ -5,14 +5,19 @@ import useCars from "../../../hooks/useCars";
 import AuthContext from "../../../context/AuthContext";
 import AddRefueling from "../car-add-refueling/AddRefueling";
 import AddMaintenance from "../car-add-maintetance/AddMeintenance";
+import useRefuel from "../../../hooks/useRefuel";
+import ErrorContext from "../../../context/ErrorContext";
 
 export default function CarDetails() {
     const [isOwner, setIsOwner] = useState(false);
     const [toggleModals, setToggle] = useState({});
+    const [average, setAverage] = useState(0);
     const [car, setCar] = useState({});
     const { auth } = useContext(AuthContext)
     const { carId } = useParams();
     const { getOneHandler, deleteCarHandler } = useCars();
+    const { getRefuels, calculateAvg, refuels } = useRefuel();
+    
 
     function onDelete(e){
         e.preventDefault()
@@ -26,7 +31,6 @@ export default function CarDetails() {
     }
     function modalClose(e){
         setToggle({[e.target.value]: false})
-        console.log(e.target.value);
         
     }
         
@@ -42,6 +46,17 @@ export default function CarDetails() {
         }
         getCar()
     },[])
+
+    useEffect(()=> {
+        getRefuels(carId)
+        .then(data => {
+                      
+            const newAverage = calculateAvg(data, car)
+            setAverage(newAverage.toFixed(1));
+    })
+    },[car, toggleModals])
+
+    
 
 
     return (
@@ -79,7 +94,7 @@ export default function CarDetails() {
                             <div className="col-md-5 col-sm-12 inner">
                                 <div className="new-cars-txt">
                                     <h2>Refuelings</h2>
-                                    <p>Average fuel consumption: <span className="consumption">6.2l / 100km</span></p>
+                                    <p>Average fuel consumption: <span className="consumption">{average == 0.0 ? "N/A " : `${average}l / 100km`}</span></p>
                                     <p className="new-cars-para2">Latest fuel consumption: 7.8l / 100km</p>
                                     <Link to={`/cars/${carId}/refuel-list`} className="welcome-btn smaller">Refuelings</Link>
                                     {isOwner && <button onClick={modalShow} className="welcome-btn smaller" value="refuel">Fill tank</button>}
