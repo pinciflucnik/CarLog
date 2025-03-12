@@ -3,11 +3,14 @@ import useCars from "../../../hooks/useCars";
 import { useContext, useEffect, useState } from "react";
 import useRefuel from "../../../hooks/useRefuel";
 import AuthContext from "../../../context/AuthContext";
+import CarEditRefueling from "../car-edit-refueling/CarEditRefueling";
 
 export default function CarRefuelList() {
     const [car, setCar] = useState({});
     const [refuels, setRefuels] = useState([]);
-    const [isOwner, setIsOwner] = useState(false)
+    const [refuelId, setId] = useState('');
+    const [isOwner, setIsOwner] = useState(false);
+    const [toggleModals, setToggle] = useState(false);
     const { getOneHandler } = useCars();
     const { carId } = useParams();
     const { getRefuelsDesc, removeRefuel } = useRefuel();
@@ -26,6 +29,12 @@ export default function CarRefuelList() {
             setIsOwner(true);
         }
     }, [car])
+    const modalHandler = (id) => {
+        setToggle(state => !state);
+         if (id) {
+            setId(id);
+         }
+    }
 
     const deleteHandler = async (id) => {
         await removeRefuel(id, auth.accessToken, carId)
@@ -82,7 +91,7 @@ export default function CarRefuelList() {
                                                     <td><span className="table-data">{refuel.liters}</span></td>
                                                     {isOwner && 
                                                         <td>
-                                                            <Link className="form-btn">Edit</Link>
+                                                            <button onClick={() => modalHandler(refuel._id)} className="form-btn">Edit</button>
                                                             <button onClick={() => deleteHandler(refuel._id)} className="form-btn">Delete</button>
                                                         </td>
                                                     }
@@ -101,6 +110,7 @@ export default function CarRefuelList() {
                             </div>
                         </div>
                     </div>
+                    {toggleModals && <CarEditRefueling refuelId={refuelId} modalHandler={modalHandler} />}
                 </div>
             </div>
         </div>
