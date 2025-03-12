@@ -6,9 +6,21 @@ export default function useRefuel() {
     const [refuels, setRefuels] = useState([]);
     const { errorSetter } = useContext(ErrorContext);
 
-    const getRefuels = async (carId) => {
+    const getRefuelsAsc = async (carId) => {
         try {
             const result = await refuelService.getAllAsc(carId);
+                        
+            setRefuels(result);
+
+            return result;
+
+        } catch (error) {
+            errorSetter({ message: 'Unable to load refuels!' });
+        }
+    }
+    const getRefuelsDesc = async (carId) => {
+        try {
+            const result = await refuelService.getAllDesc(carId);
                         
             setRefuels(result);
 
@@ -23,22 +35,51 @@ export default function useRefuel() {
         const newRefuel = { ...data, carId, km: Number(data.km), liters: Number(data.liters) };
 
         const result = await refuelService.create(newRefuel, token);
-        console.log(result);
 
         setRefuels(state => [...state, result])
     }
 
     const calculateLastAvg = (data, car) => {
-        let startKm = 0
-        if (data.length == 0) {
-            startKm = car.odometer
-        } else {
-            startKm = data[0].km
-        }
+        if (!data || data.length == 0) {
+            return 0;
+        };
+        let endKm = 0;
+        let startKm = 0;
+        let fullFound = 0;
+        let totalLiters = 0;
+
+        data.map(r => {
+            if(r.full === "true" && fullFound === 0){
+                endKm = r.km;
+                totalLiters += r.liters
+            }
+            if(r.full === "true" && fullFound === 1){
+                startKm = r.km
+            }
+            if(fullFound < 2 && r.full === "false" && fullFound !== 0){
+                
+                totalLiters += r.liters
+            }
+            if(r.full === "true"){
+                fullFound++
+            }
+            if (fullFound === 2){
+                return
+            }
+        });
+
+        console.log(endKm);
+        console.log(startKm);
+        console.log(totalLiters);
+
+        return totalLiters / ((endKm - startKm) / 100)
+        
+        
+
     };
 
     const calculateAvg = (data, car) => {
-        if (data.length === 0){
+        if (!data || data.length === 0){
             return 0;
         }
         const startKm = car.odometer;
@@ -50,15 +91,12 @@ export default function useRefuel() {
                 totalLiters += refuel.liters;
                     endKm = refuel.km;
             } else if (refuel.full === 'false' && index < data.length - 1) {
-                console.log(refuel.full);
-                console.log(index < data.length - 1);
                 
                 totalLiters += refuel.liters;
             }
 
         });
         const totalKm = endKm - startKm;
-
         return totalLiters/ (totalKm/100);
     };
 
@@ -66,8 +104,10 @@ export default function useRefuel() {
     return {
         refuels,
         refuel,
-        getRefuels,
+        getRefuelsAsc,
+        getRefuelsDesc,
         calculateAvg,
+        calculateLastAvg,
     }
 
 }

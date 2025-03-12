@@ -5,7 +5,8 @@ import useRefuel from "../../../hooks/useRefuel";
 
 export default function AddRefueling({
     modalClose,
-    carId
+    carId,
+    odometer
 }) {
     const { auth } = useContext(AuthContext);
     const { refuel } = useRefuel()
@@ -29,7 +30,7 @@ export default function AddRefueling({
                         <div className="modal-body">
                             <div className="second-body">
                                 <label htmlFor="km">Odometer reading</label>
-                                <input type="number" id="km" name="km" />
+                                <input type="number" id="km" name="km" min={odometer + 1} />
                                 <label htmlFor="liters">Liters</label>
                                 <input type="number" id="liters" name="liters" step="any" />
                                 <fieldset required>
