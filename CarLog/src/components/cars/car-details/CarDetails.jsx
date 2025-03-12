@@ -59,7 +59,6 @@ export default function CarDetails() {
         getRefuelsDesc(carId)
             .then(data => {
                 
-                console.log(data);
                 if(data.length > 0){
                     setOdo(data[0].km)
                 } else {
@@ -70,7 +69,6 @@ export default function CarDetails() {
             })
     }, [car, toggleModals])
 
-    console.log(odometer);
     
 
 

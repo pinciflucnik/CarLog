@@ -50,7 +50,7 @@ body{
 }
 
 a,a:hover,a:active,a:focus {
-	display:inline-block;
+	/* display:inline-block; */
 	text-decoration:none;
 	color: #444a57;
 	font-size:20px;
@@ -824,4 +824,38 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
 fieldset div{
     display: flex;
     justify-content: space-around;
+}
+.fuel-table{
+    min-width: 100%;
+    border-radius: 3px;
+    margin: 15px;
+    text-align: center;
+    background-color: #00000073;
+    border-radius: 5px;
+
+}
+.fuel-table, th, td{
+    text-align: center;
+    line-height: 26px;
+    font-size: 1em;
+
+};
+body table tbody tr td{
+    padding: 15px;
+}
+.table-data{
+    color: #EAE2B7;
+}
+.form-btn{
+    color: #d62828;
+    font-weight: 500;
+    margin: 7px;
+    padding: 7px;
+    font-size: 17px;
+}
+.form-btn:hover{
+    font-weight: 500;
+    padding: 7px;
+    font-size: 17px;
+    color: #fcbf49;
 }

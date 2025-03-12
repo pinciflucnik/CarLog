@@ -1,10 +1,12 @@
 import { useContext, useState } from "react";
 import refuelService from "../services/refuelService";
 import ErrorContext from "../context/ErrorContext";
+import { useNavigate } from "react-router";
 
 export default function useRefuel() {
     const [refuels, setRefuels] = useState([]);
     const { errorSetter } = useContext(ErrorContext);
+    const navigate = useNavigate();
 
     const getRefuelsAsc = async (carId) => {
         try {
@@ -71,10 +73,6 @@ export default function useRefuel() {
             }
         });
 
-        console.log(endKm);
-        console.log(startKm);
-        console.log(totalLiters);
-
         return totalLiters / ((endKm - startKm) / 100)
         
         
@@ -103,6 +101,11 @@ export default function useRefuel() {
         return totalLiters/ (totalKm/100);
     };
 
+    const removeRefuel = async (id, token, carId) => {
+        await refuelService.delete(id, token);
+        navigate(`/cars/${carId}/details`)
+    }
+
 
     return {
         refuels,
@@ -111,6 +114,7 @@ export default function useRefuel() {
         getRefuelsDesc,
         calculateAvg,
         calculateLastAvg,
+        removeRefuel,
     }
 
 }

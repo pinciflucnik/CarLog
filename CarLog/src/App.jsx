@@ -18,6 +18,7 @@ import CarDetails from './components/cars/car-details/CarDetails'
 import Footer from './components/footer/Footer'
 import CarCreate from './components/cars/car-create/CreateCar'
 import CarEdit from './components/cars/car-edit/CarEdit'
+import CarRefuelList from './components/cars/car-refuel-list/CarRefuelList'
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path='/cars/add-car' element={<CarCreate />} />
             <Route path='/cars/:carId/details' element={<CarDetails />} />
             <Route path='/cars/:carId/edit' element={<CarEdit />} />
+            <Route path='/cars/:carId/refuel-list' element={<CarRefuelList />} />
           </Routes>
         </section>
         <Footer />
