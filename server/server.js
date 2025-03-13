@@ -1435,6 +1435,24 @@
             }
 
         },
+        maintenances: {
+            "e6b977cc-736d-453e-80dc-0e7ead795106": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                title: "oil & filters",
+                price: 600,
+                carId: "a35f68c9-c20e-4bf1-96c6-865a5ae523c1",
+                _createdOn: 1741877343298,
+                _id: "e6b977cc-736d-453e-80dc-0e7ead795106"
+            },
+            "82e8442a-a02e-439a-b68b-05def8c3382a": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                title: "timing chain and peripherals",
+                price: 4300,
+                carId: "a35f68c9-c20e-4bf1-96c6-865a5ae523c1",
+                _createdOn: 1741877518572,
+                _id: "82e8442a-a02e-439a-b68b-05def8c3382a"
+            },
+        }
     };
     var rules$1 = {
     	users: {

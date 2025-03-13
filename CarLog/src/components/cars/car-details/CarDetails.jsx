@@ -27,7 +27,7 @@ export default function CarDetails() {
 
 
     function modalShow(e) {
-        setToggle({ [e.target.value]: true })
+        setToggle({ [e.target.value]: true });
 
     }
     function modalClose(e) {
@@ -109,7 +109,7 @@ export default function CarDetails() {
                                     <h2>Refuelings</h2>
                                     <p>Average fuel consumption: <span className="consumption">{average == 0.0 ? "N/A " : `${average}l / 100km`}</span></p>
                                     <p className="new-cars-para2">Latest fuel consumption: {curAvg == 0.0 ? "N/A " : `${curAvg}l / 100km`}</p>
-                                    <Link to={`/cars/${carId}/refuel-list`} className="welcome-btn smaller">Refuelings</Link>
+                                    <Link to={`/cars/${carId}/refuel-list`} className="welcome-btn smaller">Refuel List</Link>
                                     {isOwner && <button onClick={modalShow} className="welcome-btn smaller" value="refuel">Fill tank</button>}
                                 </div>
                             </div>
