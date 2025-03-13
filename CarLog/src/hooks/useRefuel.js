@@ -40,7 +40,6 @@ export default function useRefuel() {
 
         setRefuels(state => [...state, result])
     }
-
     const calculateLastAvg = (data, car) => {
         if (!data || data.length == 0) {
             return 0;
@@ -78,7 +77,6 @@ export default function useRefuel() {
         
 
     };
-
     const calculateAvg = (data, car) => {
         if (!data || data.length === 0){
             return 0;
@@ -100,12 +98,34 @@ export default function useRefuel() {
         const totalKm = endKm - startKm;
         return totalLiters/ (totalKm/100);
     };
-
     const removeRefuel = async (id, token, carId) => {
         await refuelService.delete(id, token);
         navigate(`/cars/${carId}/details`)
-    }
+    };
+    const getCurrentRefuel = async (id) => {
+        try {
+            
+            const result = await refuelService.getOne(id);
+            return result;
+        } catch (error) {
+            errorSetter({message: 'Error loading refuel details'})
+        }
 
+    };
+    const editRefuel = async (formData, refuel, token) => {
+        const data = Object.fromEntries(formData);
+        if(!data.full){
+            console.log('u have no data for tank');
+            throw new Error('Select if tank is full or not!')
+        }
+        const edited = {...refuel, ...data}
+        try {
+            await refuelService.edit(refuel._id, edited, token);
+        } catch (error) {
+            errorSetter(error);
+        }
+
+    }
 
     return {
         refuels,
@@ -115,6 +135,8 @@ export default function useRefuel() {
         calculateAvg,
         calculateLastAvg,
         removeRefuel,
+        getCurrentRefuel,
+        editRefuel,
     }
 
 }

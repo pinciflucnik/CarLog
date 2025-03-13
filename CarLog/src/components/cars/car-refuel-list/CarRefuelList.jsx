@@ -22,7 +22,7 @@ export default function CarRefuelList() {
         getRefuelsDesc(carId)
             .then(result => setRefuels(result))
         
-    }, [])
+    }, [toggleModals])
 
     useEffect(()=> {
         if (car._ownerId === auth.id){

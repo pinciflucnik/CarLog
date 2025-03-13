@@ -653,9 +653,11 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
 .error-box{
     position: absolute;
     left: 80%;
+    top: 40%;
     background-color: #D62828;
     border-radius: 3px;
     padding: 10px;
+    z-index: 20000;
 }
 .error-text{
     color: white;
@@ -820,6 +822,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #D62828;}
 }
 .my-modal input{
     color: black;
+    padding: 5px;
 }
 fieldset div{
     display: flex;
