@@ -9,17 +9,16 @@ export default function useMaintain(){
     const { auth } = useContext(AuthContext);
     const { errorSetter } = useContext(ErrorContext);
     const navigate = useNavigate();
+    const token = auth.accessToken;
 
     const createHandler = async (formData, carId) => {
-        const token = auth.accessToken;
         const data = {...Object.fromEntries(formData), carId}
         data.title = data.title.toLowerCase();
         data.price = Number(data.price);
         try {
             const result = await maintenanceService.create(data, token);
 
-            //TODO navigate to list
-            // navigate(`/cars/${carId}/view-repairs`);
+            navigate(`/cars/${carId}/view-repairs`);
         } catch (error) {
             errorSetter(error);
         }
@@ -34,6 +33,14 @@ export default function useMaintain(){
             errorSetter(error);
         }
     }
+    const getAllHandler = async (carId) => {
+        try {
+            const result = await maintenanceService.getAllDesc(carId);
+            return result;
+        } catch (error) {
+            errorSetter(error)
+        }
+    }
     const sumAll = async (carId) => {
         try {
             const all = await maintenanceService.getAllDesc(carId);
@@ -46,10 +53,17 @@ export default function useMaintain(){
             errorSetter(error)
         }
     }  
+    const deleteMaintenance = async (id, carId) => {
+        await maintenanceService.delete(id, token);
+        navigate(`/cars/${carId}/details`)
+
+    }
 
     return {
         createHandler,
+        deleteMaintenance,
         getLatestHandler,
+        getAllHandler,
         sumAll,
     }
 

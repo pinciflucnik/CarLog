@@ -40,16 +40,17 @@ export default function CarDetails() {
     }
 
     useEffect(() => {
-        const getCar = async () => {
-            const result = await getOneHandler(carId);
-            setCar(result);
+        
+            getOneHandler(carId)
+                .then(data => {
+                    
+                    setCar(data);
+        
+                    if (auth.id === data._ownerId) {
+                        setIsOwner(true);
+                    }
+                })
 
-            if (auth.id === result._ownerId) {
-                setIsOwner(true);
-            }
-
-        }
-        getCar()
     }, [])
 
     useEffect(() => {

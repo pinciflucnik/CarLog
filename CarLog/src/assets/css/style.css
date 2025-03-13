@@ -828,7 +828,7 @@ fieldset div{
     display: flex;
     justify-content: space-around;
 }
-.fuel-table{
+.my-table{
     min-width: 100%;
     border-radius: 3px;
     margin: 15px;
@@ -837,7 +837,7 @@ fieldset div{
     border-radius: 5px;
 
 }
-.fuel-table, th, td{
+.my-table, th, td{
     text-align: center;
     line-height: 26px;
     font-size: 1em;

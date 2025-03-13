@@ -1,46 +1,43 @@
-import { useParams } from "react-router";
-import useCars from "../../../hooks/useCars";
-import { useContext, useEffect, useState } from "react";
-import useRefuel from "../../../hooks/useRefuel";
+import { useContext } from "react";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useParams } from "react-router"
 import AuthContext from "../../../context/AuthContext";
-import CarEditRefueling from "../car-edit-refueling/CarEditRefueling";
+import useCars from "../../../hooks/useCars";
+import useMaintain from "../../../hooks/useMaintain";
 
-export default function CarRefuelList() {
+export default function CarMaintenanceList() {
     const [car, setCar] = useState({});
-    const [refuels, setRefuels] = useState([]);
-    const [refuelId, setId] = useState('');
     const [isOwner, setIsOwner] = useState(false);
+    const [repairs, setRepairs] = useState([]);
     const [toggleModals, setToggle] = useState(false);
-    const { getOneHandler } = useCars();
     const { carId } = useParams();
-    const { getRefuelsDesc, removeRefuel } = useRefuel();
     const { auth } = useContext(AuthContext);
+    const { getOneHandler } = useCars();
+    const { getAllHandler, deleteMaintenance } = useMaintain();
 
     useEffect(() => {
         getOneHandler(carId)
-            .then(result => setCar(result))
-        getRefuelsDesc(carId)
-            .then(result => setRefuels(result))
-        
-    }, [toggleModals])
-
-    useEffect(()=> {
-        if (car._ownerId === auth.id){
+            .then(data => setCar(data))
+        getAllHandler(carId)
+            .then(data => setRepairs(data))
+    }, []);
+    useEffect(() => {
+        if (car._ownerId === auth.id) {
             setIsOwner(true);
         }
-    }, [car])
+    }, [car]);
+
     const modalHandler = (id) => {
         setToggle(state => !state);
-         if (id) {
+        if (id) {
             setId(id);
-         }
+        }
     }
-
     const deleteHandler = async (id) => {
-        await removeRefuel(id, auth.accessToken, carId)
-        
+        // await removeRefuel(id, auth.accessToken, carId)
+        await deleteMaintenance(id, carId);
     }
-    
 
     return (
         <div className="my-wrapper">
@@ -74,25 +71,25 @@ export default function CarRefuelList() {
                         <div className="single-new-cars-item">
                             <div className="col-md-12 col-sm-12">
                                 <div className="table-container">
-                                    {refuels.length > 0 && <table className="my-table">
+                                    {repairs.length > 0 && <table className="my-table">
                                         <thead>
                                             <tr>
                                                 <th>Date</th>
-                                                <th>Odometer (km)</th>
-                                                <th>Liters</th>
-                                            {isOwner && <th>Actions</th>}    
+                                                <th>Type</th>
+                                                <th>Price</th>
+                                                {isOwner && <th>Actions</th>}
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {refuels.map((refuel) => (
-                                                <tr key={refuel.id}>
-                                                    <td><span className="table-data">{new Date(refuel._createdOn).toLocaleDateString()}</span></td>
-                                                    <td><span className="table-data">{refuel.km}</span></td>
-                                                    <td><span className="table-data">{refuel.liters}</span></td>
-                                                    {isOwner && 
+                                            {repairs.map((repair) => (
+                                                <tr key={repair.id}>
+                                                    <td><span className="table-data">{new Date(repair._createdOn).toLocaleDateString()}</span></td>
+                                                    <td><span className="table-data">{repair.title}</span></td>
+                                                    <td><span className="table-data">{repair.price} BGN</span></td>
+                                                    {isOwner &&
                                                         <td>
-                                                            <button onClick={() => modalHandler(refuel._id)} className="form-btn">Edit</button>
-                                                            <button onClick={() => deleteHandler(refuel._id)} className="form-btn">Delete</button>
+                                                            <button onClick={() => modalHandler(repair._id)} className="form-btn">Edit</button>
+                                                            <button onClick={() => deleteHandler(repair._id)} className="form-btn">Delete</button>
                                                         </td>
                                                     }
                                                 </tr>
@@ -100,7 +97,7 @@ export default function CarRefuelList() {
                                         </tbody>
                                     </table>
                                     }
-                                    {refuels.length === 0 &&
+                                    {repairs.length === 0 &&
                                         <div className="col-md-12 no-cars">
                                             <h1>There are no records to display</h1>
                                         </div>
@@ -110,7 +107,7 @@ export default function CarRefuelList() {
                             </div>
                         </div>
                     </div>
-                    {toggleModals && <CarEditRefueling refuelId={refuelId} modalHandler={modalHandler} />}
+                    {toggleModals && <CarEditRefueling repairId={repairId} modalHandler={modalHandler} />}
                 </div>
             </div>
         </div>
