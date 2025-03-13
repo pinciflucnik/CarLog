@@ -21,6 +21,11 @@ export default {
         const result = await request.get(`${base_url}?where=carId%3D%22${carId}%22&sortBy=_createdOn%20desc`);
         return result;
     },
+    getLast: async (carId) => {
+        const result = await request.get(`${base_url}?where=carId%3D%22${carId}%22&sortBy=_createdOn%20desc&pageSize=1`);
+        return result;
+
+    }
 
 
 }

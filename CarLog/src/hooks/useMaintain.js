@@ -17,15 +17,40 @@ export default function useMaintain(){
         data.price = Number(data.price);
         try {
             const result = await maintenanceService.create(data, token);
-            console.log(result);
+
+            //TODO navigate to list
             // navigate(`/cars/${carId}/view-repairs`);
         } catch (error) {
             errorSetter(error);
         }
     }
+    const getLatestHandler = async (carId) => {
+        try {
+            const result = await maintenanceService.getLast(carId);
+            console.log(result);
+            return result;
+            
+        } catch (error) {
+            errorSetter(error);
+        }
+    }
+    const sumAll = async (carId) => {
+        try {
+            const all = await maintenanceService.getAllDesc(carId);
+            let sum = 0;
+            all.map(m => {
+                sum += m.price
+            })
+            return sum;
+        } catch (error) {
+            errorSetter(error)
+        }
+    }  
 
     return {
         createHandler,
+        getLatestHandler,
+        sumAll,
     }
 
 }
