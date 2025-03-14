@@ -77,11 +77,15 @@ export default function useMaintain(){
         setCurrent(data);
     }
     const editMaintenance = async (formData) => {
-        const data = {...current, ...Object.fromEntries(formData)};
+        const edited = Object.fromEntries(formData);
+        edited.price = Number(edited.price);
+        const data = {...current, ...edited,};
         try {
             const result = await maintenanceService.edit(current._id, data, auth.accessToken);
             return result;
         } catch (error) {
+            console.log(error);
+            
             errorSetter(error)
         }
     }

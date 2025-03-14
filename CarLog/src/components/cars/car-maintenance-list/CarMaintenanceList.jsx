@@ -1,14 +1,16 @@
 import { useContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router"
+import { Link, useParams } from "react-router"
 import AuthContext from "../../../context/AuthContext";
 import useCars from "../../../hooks/useCars";
 import useMaintain from "../../../hooks/useMaintain";
 import CarEditMaintenance from "../car-edit-maintenance/CarEditMaintenance";
+import Loader from "../../loader/Loader";
 
 export default function CarMaintenanceList() {
     const [car, setCar] = useState({});
+    const [pending, setPending] = useState(true)
     const [isOwner, setIsOwner] = useState(false);
     const [repairs, setRepairs] = useState([]);
     const [toggleModals, setToggle] = useState(false);
@@ -19,17 +21,21 @@ export default function CarMaintenanceList() {
     const { getAllHandler, deleteMaintenance } = useMaintain();
 
     useEffect(() => {
+        setPending(true)
         getOneHandler(carId)
             .then(data => setCar(data))
         getAllHandler(carId)
             .then(data => setRepairs(data))
+        setPending(false)
     }, [toggleModals]);
     useEffect(() => {
+        setPending(true)
         if (car._ownerId === auth.id) {
             setIsOwner(true);
         } else {
             setIsOwner(false)
         }
+        setPending(false)
     }, [car]);
 
     const modalHandler = (id) => {
@@ -54,7 +60,9 @@ export default function CarMaintenanceList() {
                             <div className="row">
                                 <div className="col-md-7 col-sm-12">
                                     <div className="new-cars-img">
-                                        <img src={car.picture} alt={car.make} />
+                                        <Link to={`/cars/${car._id}/details`}>
+                                            <img src={car.picture} alt={car.make} />
+                                        </Link>
                                     </div>
                                 </div>
                                 <div className="col-md-5 col-sm-12">
@@ -69,6 +77,7 @@ export default function CarMaintenanceList() {
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <div>
                         <div className="single-new-cars-item">
