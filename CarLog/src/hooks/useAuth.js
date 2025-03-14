@@ -46,7 +46,7 @@ export default function useAuth(){
             const result = await register(data.email, data.password, data.username, formatedData.picture);
             
             
-            await authSetter({email: result.email, accessToken: result.accessToken, id: result._id, username: result.username});
+            authSetter({email: result.email, accessToken: result.accessToken, id: result._id, username: result.username});
     
             //redirect to profile
             navigate('/auth/profile');
@@ -61,10 +61,10 @@ export default function useAuth(){
             const result = await login(data.email, data.password);
     
             
-            navigate('/cars');
             authSetter({email: result.email, accessToken: result.accessToken, id: result._id, username: result.username});
             
             //redirect to profile
+            navigate('/auth/profile');
             
         } catch (error) {
             errorSetter(error)
