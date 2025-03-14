@@ -84,7 +84,6 @@ export default function useMaintain(){
             const result = await maintenanceService.edit(current._id, data, auth.accessToken);
             return result;
         } catch (error) {
-            console.log(error);
             
             errorSetter(error)
         }

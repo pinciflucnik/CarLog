@@ -865,6 +865,8 @@ body table tbody tr td{
 .loader-wrapper{
     display: flex;
     justify-content: center;
+    position: absolute;
+    top: 45%;
 }
 /* HTML: <div class="loader"></div> */
 .loader {

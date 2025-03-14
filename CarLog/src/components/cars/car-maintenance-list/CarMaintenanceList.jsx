@@ -23,19 +23,22 @@ export default function CarMaintenanceList() {
     useEffect(() => {
         setPending(true)
         getOneHandler(carId)
-            .then(data => setCar(data))
+            .then(data => {
+                setCar(data)
+                setPending(false)
+            })
         getAllHandler(carId)
-            .then(data => setRepairs(data))
-        setPending(false)
+            .then(data => {
+                setRepairs(data)
+                setPending(false)
+            })
     }, [toggleModals]);
     useEffect(() => {
-        setPending(true)
         if (car._ownerId === auth.id) {
             setIsOwner(true);
         } else {
             setIsOwner(false)
         }
-        setPending(false)
     }, [car]);
 
     const modalHandler = (id) => {
@@ -50,78 +53,83 @@ export default function CarMaintenanceList() {
 
     return (
         <div className="my-wrapper">
-            <div className="container">
-                <div className="section-header">
-                    <h2>{car.make} {car.model}</h2>
-                </div>
-                <div className="new-cars-content">
-                    <div className="new-cars-item">
-                        <div className="single-new-cars-item">
-                            <div className="row">
-                                <div className="col-md-7 col-sm-12">
-                                    <div className="new-cars-img">
-                                        <Link to={`/cars/${car._id}/details`}>
-                                            <img src={car.picture} alt={car.make} />
-                                        </Link>
+            {pending
+                ? <Loader />
+                : <>
+                    <div className="container">
+                        <div className="section-header">
+                            <h2>{car.make} {car.model}</h2>
+                        </div>
+                        <div className="new-cars-content">
+                            <div className="new-cars-item">
+                                <div className="single-new-cars-item">
+                                    <div className="row">
+                                        <div className="col-md-7 col-sm-12">
+                                            <div className="new-cars-img">
+                                                <Link to={`/cars/${car._id}/details`}>
+                                                    <img src={car.picture} alt={car.make} />
+                                                </Link>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-5 col-sm-12">
+                                            <div className="new-cars-txt">
+                                                <h2>Technical specifications</h2>
+                                                <div className="details">
+                                                    <p>Engine size: {car.capacity}cc</p>
+                                                    <p>Engine power: {car.power}HP</p>
+                                                    <p>Fuel type: {car.fuel}</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="col-md-5 col-sm-12">
-                                    <div className="new-cars-txt">
-                                        <h2>Technical specifications</h2>
-                                        <div className="details">
-                                            <p>Engine size: {car.capacity}cc</p>
-                                            <p>Engine power: {car.power}HP</p>
-                                            <p>Fuel type: {car.fuel}</p>
+
+                            </div>
+                            <div>
+                                <div className="single-new-cars-item">
+                                    <div className="col-md-12 col-sm-12">
+                                        <div className="table-container">
+                                            {repairs.length > 0 && <table className="my-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Date</th>
+                                                        <th>Type</th>
+                                                        <th>Price</th>
+                                                        {isOwner && <th>Actions</th>}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {repairs.map((repair) => (
+                                                        <tr key={repair._id}>
+                                                            <td><span className="table-data">{new Date(repair._createdOn).toLocaleDateString()}</span></td>
+                                                            <td><span className="table-data">{repair.title}</span></td>
+                                                            <td><span className="table-data">{repair.price} BGN</span></td>
+                                                            {isOwner &&
+                                                                <td>
+                                                                    <button onClick={() => modalHandler(repair._id)} className="form-btn">Edit</button>
+                                                                    <button onClick={() => deleteHandler(repair._id)} className="form-btn">Delete</button>
+                                                                </td>
+                                                            }
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                            }
+                                            {repairs.length === 0 &&
+                                                <div className="col-md-12 no-cars">
+                                                    <h1>There are no records to display</h1>
+                                                </div>
+                                            }
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                    </div>
-                    <div>
-                        <div className="single-new-cars-item">
-                            <div className="col-md-12 col-sm-12">
-                                <div className="table-container">
-                                    {repairs.length > 0 && <table className="my-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Date</th>
-                                                <th>Type</th>
-                                                <th>Price</th>
-                                                {isOwner && <th>Actions</th>}
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {repairs.map((repair) => (
-                                                <tr key={repair._id}>
-                                                    <td><span className="table-data">{new Date(repair._createdOn).toLocaleDateString()}</span></td>
-                                                    <td><span className="table-data">{repair.title}</span></td>
-                                                    <td><span className="table-data">{repair.price} BGN</span></td>
-                                                    {isOwner &&
-                                                        <td>
-                                                            <button onClick={() => modalHandler(repair._id)} className="form-btn">Edit</button>
-                                                            <button onClick={() => deleteHandler(repair._id)} className="form-btn">Delete</button>
-                                                        </td>
-                                                    }
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                    }
-                                    {repairs.length === 0 &&
-                                        <div className="col-md-12 no-cars">
-                                            <h1>There are no records to display</h1>
-                                        </div>
-                                    }
-
-                                </div>
-                            </div>
+                            {toggleModals && <CarEditMaintenance repairId={repairId} modalHandler={modalHandler} />}
                         </div>
                     </div>
-                    {toggleModals && <CarEditMaintenance repairId={repairId} modalHandler={modalHandler} />}
-                </div>
-            </div>
+                </>
+            }
         </div>
 
     )

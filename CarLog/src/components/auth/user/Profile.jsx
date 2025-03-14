@@ -2,15 +2,19 @@ import { useContext, useEffect, useState } from "react"
 import AuthContext from "../../../context/AuthContext"
 import CarListItem from "../../cars/car-list-item/CarListItem"
 import useCars from "../../../hooks/useCars"
+import Loader from "../../loader/Loader";
 
 export default function Profile() {
     const [cars, setCars] = useState([]);
+    const [pending, setPending] = useState(true);
     const { auth } = useContext(AuthContext)
     const { getMyHandler } = useCars();
     useEffect(() => {
         (async () => {
+            setPending(true);
             const list = await getMyHandler(auth.id, auth.accessToken);
             setCars(list);
+            setPending(false);
         })()
     }, [])
 
@@ -29,11 +33,16 @@ export default function Profile() {
                 </div>
             </div>
             <div className="container my-cars">
-                {cars.map(car => <CarListItem key={car._id} car={car} />)}
-                {cars.length == 0 && 
-                    <div className="col-md-12 no-cars">
-                        <h1>You haven't added any cars yet</h1>
-                    </div>
+                {pending
+                    ? <Loader />
+                    : <>
+                        {cars.map(car => <CarListItem key={car._id} car={car} />)}
+                        {cars.length == 0 &&
+                            <div className="col-md-12 no-cars">
+                                <h1>You haven't added any cars yet</h1>
+                            </div>
+                        }
+                    </>
                 }
             </div>
         </>
