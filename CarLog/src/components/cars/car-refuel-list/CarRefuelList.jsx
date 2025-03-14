@@ -27,6 +27,8 @@ export default function CarRefuelList() {
     useEffect(()=> {
         if (car._ownerId === auth.id){
             setIsOwner(true);
+        } else {
+            setIsOwner(false)
         }
     }, [car])
     const modalHandler = (id) => {

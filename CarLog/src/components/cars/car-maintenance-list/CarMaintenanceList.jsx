@@ -25,6 +25,8 @@ export default function CarMaintenanceList() {
     useEffect(() => {
         if (car._ownerId === auth.id) {
             setIsOwner(true);
+        } else {
+            setIsOwner(false)
         }
     }, [car]);
 
