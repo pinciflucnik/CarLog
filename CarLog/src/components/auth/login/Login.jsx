@@ -1,6 +1,8 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useForm from "../../../hooks/UseForm";
 import useAuth from "../../../hooks/UseAuth";
+import { useContext, useEffect } from "react";
+import AuthContext from "../../../context/AuthContext";
 
 export default function Login() {
     const { loginHandler } = useAuth()

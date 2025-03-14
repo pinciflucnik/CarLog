@@ -22,6 +22,8 @@ import CarRefuelList from './components/cars/car-refuel-list/CarRefuelList'
 import CarMaintenanceList from './components/cars/car-maintenance-list/CarMaintenanceList'
 import Forbidden from './components/403/Forbidden'
 import NotFound from './components/404/404'
+import GuardAuthenticated from './route-guards/GuardAuthenticated'
+import GuardGuest from './route-guards/GuardGuest'
 
 function App() {
   return (
@@ -32,18 +34,25 @@ function App() {
           <ErrorMessage />
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/auth/register' element={<Register />} />
-            <Route path='/auth/login' element={<Login />} />
-            <Route path='/auth/profile' element={<Profile />} />
-            <Route path='/auth/logout' element={<Logout />} />
-            <Route path='/cars' element={<CarList />} />
-            <Route path='/cars/add-car' element={<CarCreate />} />
             <Route path='/cars/:carId/details' element={<CarDetails />} />
-            <Route path='/cars/:carId/edit' element={<CarEdit />} />
+            <Route path='/cars' element={<CarList />} />
             <Route path='/cars/:carId/refuel-list' element={<CarRefuelList />} />
             <Route path='/cars/:carId/view-repairs' element={<CarMaintenanceList />} />
             <Route path='/403' element={<Forbidden />} />
             <Route path='*' element={<NotFound />} />
+
+            <Route element={<GuardGuest />}>
+              <Route path='/auth/register' element={<Register />} />
+              <Route path='/auth/login' element={<Login />} />
+            </Route>
+
+            <Route element={<GuardAuthenticated />}>
+              <Route path='/auth/profile' element={<Profile />} />
+              <Route path='/auth/logout' element={<Logout />} />
+              <Route path='/cars/add-car' element={<CarCreate />} />
+              <Route path='/cars/:carId/edit' element={<CarEdit />} />
+            </Route>
+            
           </Routes>
         </section>
         <Footer />
