@@ -30,7 +30,6 @@ export default function useMaintain(){
     const getLatestHandler = async (carId) => {
         try {
             const result = await maintenanceService.getLast(carId);
-            console.log(result);
             return result;
             
         } catch (error) {
@@ -77,6 +76,15 @@ export default function useMaintain(){
     const setMyCurrent = (data) => {
         setCurrent(data);
     }
+    const editMaintenance = async (formData) => {
+        const data = {...current, ...Object.fromEntries(formData)};
+        try {
+            const result = await maintenanceService.edit(current._id, data, auth.accessToken);
+            return result;
+        } catch (error) {
+            errorSetter(error)
+        }
+    }
 
     return {
         createHandler,
@@ -86,6 +94,7 @@ export default function useMaintain(){
         getSingleMaintenance,
         sumAll,
         setMyCurrent,
+        editMaintenance,
         current,
     }
 

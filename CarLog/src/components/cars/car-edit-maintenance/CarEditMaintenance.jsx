@@ -5,16 +5,20 @@ export default function CarEditMaintenance({
     repairId,
     modalHandler
 }) {
-    const {getSingleMaintenance, setMyCurrent, current} = useMaintain();
+    const {getSingleMaintenance, editMaintenance, setMyCurrent, current} = useMaintain();
 
     useEffect(()=> {
         getSingleMaintenance(repairId)
             .then(data => {
                 setMyCurrent(data)
             })
-    },[])
-    console.log('from component');
-    console.log(current);
+    },[]);
+
+    async function onEdit(formData) {
+        await editMaintenance(formData);
+        modalHandler(current._id);
+        
+    }
     return (
         <div className="modal my-modal" tabIndex="-1" role="dialog">
             <div className="modal-dialog" role="document" >
@@ -25,7 +29,7 @@ export default function CarEditMaintenance({
                             <span>&times;</span>
                         </button>
                     </div>
-                    <form>
+                    <form action={onEdit}>
                         <div className="modal-body">
                             <div className="second-body">
                                 <label htmlFor="title">Maintenance details</label>

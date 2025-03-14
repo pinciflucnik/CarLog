@@ -23,7 +23,7 @@ export default function CarMaintenanceList() {
             .then(data => setCar(data))
         getAllHandler(carId)
             .then(data => setRepairs(data))
-    }, []);
+    }, [toggleModals]);
     useEffect(() => {
         if (car._ownerId === auth.id) {
             setIsOwner(true);
