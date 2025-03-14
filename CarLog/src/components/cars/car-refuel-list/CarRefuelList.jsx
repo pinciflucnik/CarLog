@@ -87,7 +87,7 @@ export default function CarRefuelList() {
                                         </thead>
                                         <tbody>
                                             {refuels.map((refuel) => (
-                                                <tr key={refuel.id}>
+                                                <tr key={refuel._id}>
                                                     <td><span className="table-data">{new Date(refuel._createdOn).toLocaleDateString()}</span></td>
                                                     <td><span className="table-data">{refuel.km}</span></td>
                                                     <td><span className="table-data">{refuel.liters}</span></td>

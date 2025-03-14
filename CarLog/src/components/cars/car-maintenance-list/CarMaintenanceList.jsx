@@ -5,12 +5,14 @@ import { useParams } from "react-router"
 import AuthContext from "../../../context/AuthContext";
 import useCars from "../../../hooks/useCars";
 import useMaintain from "../../../hooks/useMaintain";
+import CarEditMaintenance from "../car-edit-maintenance/CarEditMaintenance";
 
 export default function CarMaintenanceList() {
     const [car, setCar] = useState({});
     const [isOwner, setIsOwner] = useState(false);
     const [repairs, setRepairs] = useState([]);
     const [toggleModals, setToggle] = useState(false);
+    const [repairId, setId] = useState('');
     const { carId } = useParams();
     const { auth } = useContext(AuthContext);
     const { getOneHandler } = useCars();
@@ -37,7 +39,6 @@ export default function CarMaintenanceList() {
         }
     }
     const deleteHandler = async (id) => {
-        // await removeRefuel(id, auth.accessToken, carId)
         await deleteMaintenance(id, carId);
     }
 
@@ -84,7 +85,7 @@ export default function CarMaintenanceList() {
                                         </thead>
                                         <tbody>
                                             {repairs.map((repair) => (
-                                                <tr key={repair.id}>
+                                                <tr key={repair._id}>
                                                     <td><span className="table-data">{new Date(repair._createdOn).toLocaleDateString()}</span></td>
                                                     <td><span className="table-data">{repair.title}</span></td>
                                                     <td><span className="table-data">{repair.price} BGN</span></td>
@@ -109,7 +110,7 @@ export default function CarMaintenanceList() {
                             </div>
                         </div>
                     </div>
-                    {toggleModals && <CarEditRefueling repairId={repairId} modalHandler={modalHandler} />}
+                    {toggleModals && <CarEditMaintenance repairId={repairId} modalHandler={modalHandler} />}
                 </div>
             </div>
         </div>

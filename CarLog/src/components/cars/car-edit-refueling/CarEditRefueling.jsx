@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import AuthContext from "../../../context/AuthContext";
 import ErrorContext from "../../../context/ErrorContext";
 import useRefuel from "../../../hooks/useRefuel";
-import ErrorMessage from "../../error/ErrorMessage";
 
 export default function CarEditRefueling({
     refuelId,
@@ -22,7 +21,6 @@ export default function CarEditRefueling({
                 setRefuel(data)
             })
     }, [])
-    const isFull = refuel.full
     async function onEdit(formData) {
         try {
             await editRefuel(formData, refuel, auth.accessToken)
