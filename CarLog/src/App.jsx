@@ -20,13 +20,14 @@ import CarCreate from './components/cars/car-create/CreateCar'
 import CarEdit from './components/cars/car-edit/CarEdit'
 import CarRefuelList from './components/cars/car-refuel-list/CarRefuelList'
 import CarMaintenanceList from './components/cars/car-maintenance-list/CarMaintenanceList'
+import Forbidden from './components/403/Forbidden'
+import NotFound from './components/404/404'
 
 function App() {
   return (
     <ErrorProvider>
       <AuthProvider>
         <section className="welcome-hero">
-
           <Navigation />
           <ErrorMessage />
           <Routes>
@@ -41,6 +42,8 @@ function App() {
             <Route path='/cars/:carId/edit' element={<CarEdit />} />
             <Route path='/cars/:carId/refuel-list' element={<CarRefuelList />} />
             <Route path='/cars/:carId/view-repairs' element={<CarMaintenanceList />} />
+            <Route path='/403' element={<Forbidden />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </section>
         <Footer />
