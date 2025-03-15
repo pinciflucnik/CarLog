@@ -24,6 +24,7 @@ import Forbidden from './components/403/Forbidden'
 import NotFound from './components/404/404'
 import GuardAuthenticated from './route-guards/GuardAuthenticated'
 import GuardGuest from './route-guards/GuardGuest'
+import About from './components/about/About'
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path='/cars/:carId/refuel-list' element={<CarRefuelList />} />
             <Route path='/cars/:carId/view-repairs' element={<CarMaintenanceList />} />
             <Route path='/403' element={<Forbidden />} />
+            <Route path='/about' element={<About />} />
             <Route path='*' element={<NotFound />} />
 
             <Route element={<GuardGuest />}>

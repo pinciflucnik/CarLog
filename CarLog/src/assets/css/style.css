@@ -933,3 +933,50 @@ body table tbody tr td{
     background-color: #D62828;
     color: white;
   }
+
+  .about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: transparent;
+}
+
+.about-content {
+    max-width: 800px;
+    padding: 40px;
+    border-radius: 12px;
+    backdrop-filter: blur(8px); /* Glassmorphism effect */
+    background: rgba(255, 255, 255, 0.1); /* Transparent white */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: var(--primary-text-color);
+}
+
+.about-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.about-content p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: var(--secondary-text-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-content {
+        padding: 20px;
+    }
+
+    .about-content h1 {
+        font-size: 2rem;
+    }
+
+    .about-content p {
+        font-size: 1rem;
+    }
+}

@@ -22,7 +22,7 @@ export default function useMaintain(){
         try {
             const result = await maintenanceService.create(data, token);
 
-            navigate(`/cars/${carId}/view-repairs`);
+            navigate(`/cars/${carId}/details`);
         } catch (error) {
             errorSetter(error);
         }

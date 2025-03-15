@@ -3,10 +3,7 @@ import AuthContext from "../context/AuthContext"
 import { Navigate, Outlet } from "react-router"
 
 export default function GuardGuest(){
-    const { auth } = useContext(AuthContext)
-    console.log("guard guest");
-    console.log(auth);
-    
+    const { auth } = useContext(AuthContext)    
     
     return (
         !auth.email 
