@@ -41,10 +41,10 @@ function App() {
             <Route path='/403' element={<Forbidden />} />
             <Route path='*' element={<NotFound />} />
 
-            {/* <Route element={<GuardGuest />}> */}
+            <Route element={<GuardGuest />}>
               <Route path='/auth/register' element={<Register />} />
               <Route path='/auth/login' element={<Login />} />
-            {/* </Route> */}
+            </Route>
 
             <Route element={<GuardAuthenticated />}>
               <Route path='/auth/profile' element={<Profile />} />

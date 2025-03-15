@@ -21,7 +21,7 @@ export default function Login() {
 
                     <button type="submit">Login</button>
                 </form>
-                <p>Not registered? Click <Link href="/auth/register">here</Link></p>
+                <p>Not registered? Click <Link to="/auth/register">here</Link></p>
             </div>
         </div>
 
