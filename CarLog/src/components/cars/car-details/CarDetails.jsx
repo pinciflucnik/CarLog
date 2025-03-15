@@ -134,6 +134,7 @@ export default function CarDetails() {
                                                     <p>Fuel type: {car.fuel}</p>
                                                     {isOwner && <Link to={`/cars/${carId}/edit`} className="welcome-btn smaller">Edit</Link>}
                                                     {isOwner && <button onClick={onDelete} className="welcome-btn smaller">Delete</button>}
+                                                    {auth.email && !isOwner && <button className="welcome-btn smaller">Watch</button>}
                                                 </div>
                                             </div>
                                         </div>
