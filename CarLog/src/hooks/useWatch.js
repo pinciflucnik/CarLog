@@ -8,17 +8,22 @@ import AuthContext from '../context/AuthContext';
 export default function useWatch(carId) {
     const { auth } = useContext(AuthContext)
     const [watchersList, setWatchersList] = useState([]);
+    const [watched, setWatchedList] = useState([]);
     const [isWatched, setIsWatched] = useState(false)
-    const [listId, setListId] = useState('')
+    const [listId, setListId] = useState('');
+    const [allList, setAllLists] = useState([]);
 
     useEffect(() => {
-        watchService.getAll(carId)
-            .then(data => {
-                
-                const list = Object.values(data).filter(r => r.carId === carId)[0].watchers
-                const id = Object.values(data).filter(r => r.carId === carId)[0]._id
-                setWatchersList(list);
-                setListId(id);            
+        watchService.getAll()
+            .then(data => {  
+                             
+                if (carId){
+                    const list = data.filter(r => r.carId === carId)[0].watchers
+                    const id = data.filter(r => r.carId === carId)[0]._id
+                    setWatchersList(list);
+                    setListId(id);  
+                }
+                setAllLists(data)          
             })
     },[])
     useEffect(() => {
@@ -42,9 +47,47 @@ export default function useWatch(carId) {
         setWatchersList(list);
     }
     
+    const getWached = async () => {
+        console.log('u r here');
+        
+        if (allList.length === 0){
+            return []
+        }
+
+        let carIds = [];
+        allList.filter(l => {
+
+            if(l.watchers.includes(auth.id)){
+                carIds.push(l.carId)
+            }
+            
+        })
+
+        console.log(carIds);
+        
+        
+        const result = await cars.getAll();
+        
+        let watched = [];
+        result.filter(r => {
+            if (carIds.includes(r._id)){
+                watched.push(r)
+            }
+            
+        })
+        
+        setWatchedList(watched);
+        return watched;
+        
+         
+        
+    }
+    
     return {
-        watchedList: watchersList,
         isWatched,
-        addToWached
+        allList,
+        watched,
+        addToWached,
+        getWached,
     }
 }

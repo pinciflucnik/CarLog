@@ -3,20 +3,23 @@ import AuthContext from "../../../context/AuthContext"
 import CarListItem from "../../cars/car-list-item/CarListItem"
 import useCars from "../../../hooks/useCars"
 import Loader from "../../loader/Loader";
+import useWatch from "../../../hooks/useWatch";
 
 export default function Profile() {
     const [cars, setCars] = useState([]);
     const [pending, setPending] = useState(true);
     const { auth } = useContext(AuthContext)
     const { getMyHandler } = useCars();
+    const { getWached, allList, watched } = useWatch();
     useEffect(() => {
         (async () => {
             setPending(true);
             const list = await getMyHandler(auth.id);
             setCars(list);
+            const watched = await getWached();
             setPending(false);
         })()
-    }, [])
+    }, [allList])
 
 
     return (
@@ -32,6 +35,11 @@ export default function Profile() {
                     </div>
                 </div>
             </div>
+            {cars.length > 0 &&
+                <div className="user-info col-md-12">
+                    <h1>My cars</h1>
+                </div>
+            }
             <div className="container my-cars">
                 {pending
                     ? <Loader />
@@ -39,7 +47,25 @@ export default function Profile() {
                         {cars.map(car => <CarListItem key={car._id} car={car} />)}
                         {cars.length == 0 &&
                             <div className="col-md-12 no-cars">
-                                <h1>You haven't added any cars yet</h1>
+                                <h1 className="no-data">You haven't added any cars yet</h1>
+                            </div>
+                        }
+                    </>
+                }
+            </div>
+            {watched.length > 0 &&
+                <div className="user-info col-md-12">
+                    <h1>Watched cars </h1>
+                </div>
+            }
+            <div className="container my-cars">
+                {pending
+                    ? <Loader />
+                    : <>
+                        {watched.map(car => <CarListItem key={car._id} car={car} />)}
+                        {watched.length == 0 &&
+                            <div className="col-md-12 no-cars">
+                                <h1 className="no-data">You are not watchin any cars</h1>
                             </div>
                         }
                     </>

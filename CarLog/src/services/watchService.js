@@ -10,10 +10,10 @@ export const createList = async (carId) => {
     
 }
 
-export const getAll = async (carId) => {
+export const getAll = async () => {
     const result = await request.get(`${base_url}`);
     
-    return result
+    return Object.values(result)
 }
 
 
