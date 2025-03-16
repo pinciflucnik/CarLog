@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router";
 import axios from 'axios';
 
@@ -48,7 +48,6 @@ export default function useAuth(){
             
             authSetter({email: result.email, accessToken: result.accessToken, id: result._id, username: result.username});
     
-            //redirect to profile
             setTimeout(()=> {
                 navigate('/auth/profile');
             },100)
@@ -64,7 +63,6 @@ export default function useAuth(){
     
             authSetter({email: result.email, accessToken: result.accessToken, id: result._id, username: result.username});
             
-            //redirect to profile
             setTimeout(()=> {
                 navigate('/auth/profile');
             },100)

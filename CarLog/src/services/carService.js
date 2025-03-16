@@ -14,7 +14,7 @@ export const getAll = async () => {
     return result;
 }
 
-export const getMyCars = async (id, token) => {
+export const getMyCars = async (id) => {
     const result = await request.get(`${baseUrl}?where=_ownerId%3D%22${id}%22`)
     return result;
 }

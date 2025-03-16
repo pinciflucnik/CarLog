@@ -980,3 +980,8 @@ body table tbody tr td{
         font-size: 1rem;
     }
 }
+.details .special {
+    margin: 20px;
+    color: #FCBF49;
+    font-size: 1.3em;
+}

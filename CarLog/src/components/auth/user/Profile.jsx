@@ -12,7 +12,7 @@ export default function Profile() {
     useEffect(() => {
         (async () => {
             setPending(true);
-            const list = await getMyHandler(auth.id, auth.accessToken);
+            const list = await getMyHandler(auth.id);
             setCars(list);
             setPending(false);
         })()

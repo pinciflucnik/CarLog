@@ -1,5 +1,6 @@
 import { useContext } from 'react';
-import * as cars from '../services/carService'
+import * as cars from '../services/carService';
+import * as watchService from '../services/watchService';
 import ErrorContext from '../context/ErrorContext';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
@@ -45,6 +46,7 @@ export default function useCars() {
             }
 
             const newCar = await cars.create(formattedData, token);
+            const newList = await watchService.createList(newCar._id);
 
 
             //redirect to car details
@@ -78,9 +80,9 @@ export default function useCars() {
         }
     }
     
-    const getMyHandler = async (id, token) => {
+    const getMyHandler = async (id) => {
         try {
-            const list = await cars.getMyCars(id, token)
+            const list = await cars.getMyCars(id)
             return list;
             
         } catch (error) {
