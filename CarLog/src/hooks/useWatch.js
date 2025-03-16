@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react'
 import * as watchService from '../services/watchService'
 import * as cars from '../services/carService'
 import AuthContext from '../context/AuthContext';
+import ErrorContext from '../context/ErrorContext';
 
 export default function useWatch(carId) {
     const { auth } = useContext(AuthContext)
@@ -12,6 +13,7 @@ export default function useWatch(carId) {
     const [isWatched, setIsWatched] = useState(false)
     const [listId, setListId] = useState('');
     const [allList, setAllLists] = useState([]);
+    const { errorSetter } = useContext(ErrorContext);
 
     useEffect(() => {
         watchService.getAll()
@@ -24,6 +26,9 @@ export default function useWatch(carId) {
                     setListId(id);  
                 }
                 setAllLists(data)          
+            })
+            .catch((err)=> {
+                errorSetter(err)
             })
     },[])
     useEffect(() => {
@@ -41,14 +46,17 @@ export default function useWatch(carId) {
             "watchers": list
         }
         
-        
-        await watchService.addToList(listId, data)
-
-        setWatchersList(list);
+        try {
+            await watchService.addToList(listId, data)
+    
+            setWatchersList(list);
+            
+        } catch (error) {
+            errorSetter(error)
+        }
     }
     
     const getWached = async () => {
-        console.log('u r here');
         
         if (allList.length === 0){
             return []
@@ -63,21 +71,24 @@ export default function useWatch(carId) {
             
         })
 
-        console.log(carIds);
-        
-        
-        const result = await cars.getAll();
-        
-        let watched = [];
-        result.filter(r => {
-            if (carIds.includes(r._id)){
-                watched.push(r)
-            }
+        try {
+            const result = await cars.getAll();
             
-        })
-        
-        setWatchedList(watched);
-        return watched;
+            let watched = [];
+            result.filter(r => {
+                if (carIds.includes(r._id)){
+                    watched.push(r)
+                }
+                
+            })
+            
+            setWatchedList(watched);
+            return watched;
+            
+            
+        } catch (error) {
+            errorSetter(error)
+        }
         
          
         

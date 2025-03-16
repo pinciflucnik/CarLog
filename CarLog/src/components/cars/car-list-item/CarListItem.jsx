@@ -3,7 +3,6 @@ import { Link } from "react-router";
 export default function CarListItem({
     car
 }) {
-    //remove my-wrapper when you get to all cars
     return (
         <div className="col-md-4 col-sm-6">
             <Link to={`/cars/${car._id}/details`}>

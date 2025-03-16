@@ -4,6 +4,7 @@ import CarListItem from "../../cars/car-list-item/CarListItem"
 import useCars from "../../../hooks/useCars"
 import Loader from "../../loader/Loader";
 import useWatch from "../../../hooks/useWatch";
+import ErrorContext from "../../../context/ErrorContext";
 
 export default function Profile() {
     const [cars, setCars] = useState([]);
@@ -11,13 +12,20 @@ export default function Profile() {
     const { auth } = useContext(AuthContext)
     const { getMyHandler } = useCars();
     const { getWached, allList, watched } = useWatch();
+    const { errorSetter } = useContext(ErrorContext);
     useEffect(() => {
         (async () => {
             setPending(true);
-            const list = await getMyHandler(auth.id);
-            setCars(list);
-            const watched = await getWached();
-            setPending(false);
+            try {
+                const list = await getMyHandler(auth.id);
+                setCars(list);
+
+                const watched = await getWached();
+                setPending(false);
+                
+            } catch (error) {
+                errorSetter(error)
+            }
         })()
     }, [allList])
 

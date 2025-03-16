@@ -115,7 +115,6 @@ export default function useRefuel() {
     const editRefuel = async (formData, refuel, token) => {
         const data = Object.fromEntries(formData);
         if(!data.full){
-            console.log('u have no data for tank');
             throw new Error('Select if tank is full or not!')
         }
         const edited = {...refuel, ...data}

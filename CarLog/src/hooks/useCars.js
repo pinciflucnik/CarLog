@@ -13,7 +13,6 @@ export default function useCars() {
 
     const addCarHandler = async (data, token, file) => {
 
-        //format data here
         let formattedData = {
             ...data,
             make: data.make.toUpperCase(),
@@ -49,11 +48,9 @@ export default function useCars() {
             const newList = await watchService.createList(newCar._id);
 
 
-            //redirect to car details
             navigate(`/cars/${newCar._id}/details`)
 
         } catch (error) {
-            console.log(error);
             errorSetter(error)
         }
 
