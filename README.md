@@ -5,6 +5,7 @@
     - https://www.free-css.com/free-css-templates/page296/carvilla as a base
     - the entire css that comes with the template, I have added code when I needed to
     - "cloudinary" for car photo upload (has default setting if no file is provided)
+    - Sofruni's practice server with preceeded data
 
  Guests can:
     - Look at all cars / details
