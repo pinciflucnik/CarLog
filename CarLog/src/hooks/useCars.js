@@ -57,6 +57,8 @@ export default function useCars() {
     }
 
     const editCarHandler = async (carData, token) => {
+        carData.make = carData.make.toUpperCase();
+        carData.model = carData.model.toUpperCase()
         try {
             const editedCar = await cars.update(carData, token);
             navigate(`/cars/${editedCar._id}/details`)

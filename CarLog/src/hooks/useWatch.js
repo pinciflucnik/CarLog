@@ -38,7 +38,7 @@ export default function useWatch(carId) {
         }
     }, [watchersList])
 
-    const addToWached = async () => {
+    const addToWatched = async () => {
         const list = [...watchersList, auth.id]
         const data = {
             "_id": listId,
@@ -56,7 +56,7 @@ export default function useWatch(carId) {
         }
     }
     
-    const getWached = async () => {
+    const getWatched = async () => {
         
         if (allList.length === 0){
             return []
@@ -98,7 +98,7 @@ export default function useWatch(carId) {
         isWatched,
         allList,
         watched,
-        addToWached,
-        getWached,
+        addToWatched,
+        getWatched,
     }
 }

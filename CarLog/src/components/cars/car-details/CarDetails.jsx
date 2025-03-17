@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router";
 import useCars from "../../../hooks/useCars";
 import AuthContext from "../../../context/AuthContext";
 import AddRefueling from "../car-add-refueling/AddRefueling";
-import AddMaintenance from "../car-add-maintetance/AddMeintenance";
+import AddMaintenance from "../car-add-maintenance/AddMaintenance";
 import useRefuel from "../../../hooks/useRefuel";
 import useMaintain from "../../../hooks/useMaintain";
 import Loader from "../../loader/Loader";
@@ -22,7 +22,7 @@ export default function CarDetails() {
     const [odometer, setOdo] = useState(0);
     const { auth } = useContext(AuthContext)
     const { carId } = useParams();
-    const { isWatched, addToWached } = useWatch(carId);
+    const { isWatched, addToWatched } = useWatch(carId);
     const { getOneHandler, deleteCarHandler } = useCars();
     const { getRefuelsAsc, getRefuelsDesc, calculateAvg, calculateLastAvg } = useRefuel();
     const { getLatestHandler, sumAll } = useMaintain();
@@ -135,7 +135,7 @@ export default function CarDetails() {
                                                     <p>Fuel type: {car.fuel}</p>
                                                     {isOwner && <Link to={`/cars/${carId}/edit`} className="welcome-btn smaller">Edit</Link>}
                                                     {isOwner && <button onClick={onDelete} className="welcome-btn smaller">Delete</button>}
-                                                    {auth.email && !isOwner && !isWatched && <button onClick={addToWached} className="welcome-btn smaller">Watch</button>}
+                                                    {auth.email && !isOwner && !isWatched && <button onClick={addToWatched} className="welcome-btn smaller">Watch</button>}
                                                     {auth.email && !isOwner && isWatched && <p className="special">In your watch list</p>}
                                                 </div>
                                             </div>

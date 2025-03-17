@@ -11,7 +11,7 @@ export default function Profile() {
     const [pending, setPending] = useState(true);
     const { auth } = useContext(AuthContext)
     const { getMyHandler } = useCars();
-    const { getWached, allList, watched } = useWatch();
+    const { getWatched, allList, watched } = useWatch();
     const { errorSetter } = useContext(ErrorContext);
     useEffect(() => {
         (async () => {
@@ -20,7 +20,7 @@ export default function Profile() {
                 const list = await getMyHandler(auth.id);
                 setCars(list);
 
-                const watched = await getWached();
+                const watched = await getWatched();
                 setPending(false);
                 
             } catch (error) {
