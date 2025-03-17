@@ -44,9 +44,9 @@ export default function CarEditRefueling({
                         <div className="modal-body">
                             <div className="second-body">
                                 <label htmlFor="km">Odometer reading</label>
-                                <input type="number" id="km" name="km" defaultValue={refuel.km} />
+                                <input type="number" id="km" name="km" defaultValue={refuel.km} required/>
                                 <label htmlFor="liters">Liters</label>
-                                <input type="number" id="liters" name="liters" step="any" defaultValue={refuel.liters} />
+                                <input type="number" id="liters" name="liters" step="any" defaultValue={refuel.liters} required/>
                                 <fieldset required>
                                     <p>Is tank full?</p>
                                     <div>

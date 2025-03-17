@@ -35,10 +35,14 @@ export default function useRefuel() {
     const refuel = async (formData, carId, token) => {
         const data = { ...Object.fromEntries(formData) }
         const newRefuel = { ...data, carId, km: Number(data.km), liters: Number(data.liters) };
-
-        const result = await refuelService.create(newRefuel, token);
-
-        setRefuels(state => [...state, result])
+        try {
+            const result = await refuelService.create(newRefuel, token);
+    
+            setRefuels(state => [...state, result])
+            
+        } catch (error) {
+            errorSetter(error)
+        }
     }
     const calculateLastAvg = (data, car) => {
         if (!data || data.length == 0) {
@@ -99,8 +103,13 @@ export default function useRefuel() {
         return totalLiters/ (totalKm/100);
     };
     const removeRefuel = async (id, token, carId) => {
-        await refuelService.delete(id, token);
-        navigate(`/cars/${carId}/details`)
+        try {
+            await refuelService.delete(id, token);
+            navigate(`/cars/${carId}/details`)
+            
+        } catch (error) {
+           errorSetter(error) 
+        }
     };
     const getCurrentRefuel = async (id) => {
         try {

@@ -33,9 +33,9 @@ export default function CarEditMaintenance({
                         <div className="modal-body">
                             <div className="second-body">
                                 <label htmlFor="title">Maintenance details</label>
-                                <input type="text" id="title" name="title" defaultValue={current.title} />
+                                <input type="text" id="title" name="title" defaultValue={current.title} required/>
                                 <label htmlFor="price">Cost</label>
-                                <input type="number" id="price" name="price" defaultValue={current.price} />
+                                <input type="number" id="price" name="price" defaultValue={current.price} required/>
                             </div>
                         </div>
                         <div className="modal-footer">

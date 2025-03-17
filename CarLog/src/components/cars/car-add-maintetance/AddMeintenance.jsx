@@ -27,9 +27,9 @@ export default function AddMaintenance({
                         <div className="modal-body">
                             <div className="second-body">
                                 <label htmlFor="title">Maintenance details</label>
-                                <input type="text" id="title" name="title" />
+                                <input type="text" id="title" name="title" required />
                                 <label htmlFor="price">Cost</label>
-                                <input type="number" id="price" name="price" />
+                                <input type="number" id="price" name="price" required/>
                             </div>
                         </div>
                         <div className="modal-footer">

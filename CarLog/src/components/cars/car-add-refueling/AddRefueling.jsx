@@ -29,9 +29,9 @@ export default function AddRefueling({
                         <div className="modal-body">
                             <div className="second-body">
                                 <label htmlFor="km">Odometer reading</label>
-                                <input type="number" id="km" name="km" min={odometer + 1} />
+                                <input type="number" id="km" name="km" min={odometer + 1} required/>
                                 <label htmlFor="liters">Liters</label>
-                                <input type="number" id="liters" name="liters" step="any" />
+                                <input type="number" id="liters" name="liters" step="any" required/>
                                 <fieldset required>
                                     <p>Is tank full?</p>
                                     <div>
