@@ -13,6 +13,7 @@ export default function useWatch(carId) {
     const [isWatched, setIsWatched] = useState(false)
     const [listId, setListId] = useState('');
     const [allList, setAllLists] = useState([]);
+    const [isPending, setIsPending] = useState(false);
     const { errorSetter } = useContext(ErrorContext);
 
     useEffect(() => {
@@ -47,10 +48,11 @@ export default function useWatch(carId) {
         }
         
         try {
+            setIsPending(true)
             await watchService.addToList(listId, data)
     
             setWatchersList(list);
-            
+            setIsPending(false)
         } catch (error) {
             errorSetter(error)
         }
@@ -100,5 +102,6 @@ export default function useWatch(carId) {
         watched,
         addToWatched,
         getWatched,
+        isPending
     }
 }

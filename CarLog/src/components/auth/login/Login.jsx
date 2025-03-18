@@ -5,7 +5,7 @@ import { useContext, useEffect } from "react";
 import AuthContext from "../../../context/AuthContext";
 
 export default function Login() {
-    const { loginHandler } = useAuth()
+    const { loginHandler, isPending } = useAuth()
     const { values, onChange, onSubmit } = useForm(loginHandler, {email:'', password:''})
     return (
         <div className='my-wrapper'>
@@ -19,7 +19,7 @@ export default function Login() {
                     <label htmlFor="password">Password:</label>
                     <input type="password" id="password" name="password" autoComplete="password" value={values.password} onChange={onChange} required />
 
-                    <button type="submit">Login</button>
+                    <button type="submit" disabled={isPending}>Login</button>
                 </form>
                 <p>Not registered? Click <Link to="/auth/register">here</Link></p>
             </div>

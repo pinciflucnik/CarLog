@@ -3,7 +3,7 @@ import useAuth from "../../../hooks/UseAuth";
 import useForm from "../../../hooks/UseForm";
 
 export default function Register() {
-    const { registerHandler } = useAuth();
+    const { registerHandler, isPending } = useAuth();
     const { values, file, onFileSelect, onChange, onSubmit } = useForm((data) => registerHandler(data, file), {
         email: '',
         password: '',
@@ -34,7 +34,7 @@ export default function Register() {
                     {/* <label htmlFor="picture">Upload profile picture:</label>
                     <input type="file" id="picture" name="picture" value={values.picture} onChange={onFileSelect} /> */}
 
-                    <button type="submit">Login</button>
+                    <button type="submit" disabled={isPending}>Login</button>
                 </form>
                 <p>Already registered? Click <Link to="/auth/login">here</Link></p>
             </div>

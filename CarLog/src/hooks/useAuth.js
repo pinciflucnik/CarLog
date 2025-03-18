@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import axios from 'axios';
 
@@ -12,6 +12,7 @@ const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dtwyysfkn/image/upload'
 export default function useAuth(){
     const { authSetter, auth } = useContext(AuthContext);
     const { errorSetter } = useContext(ErrorContext);
+    const [isPending, setPending] = useState(false)
     const navigate = useNavigate();
 
     const registerHandler = async (data, file) => {
@@ -22,6 +23,7 @@ export default function useAuth(){
         }
         let formatedData = data
         try {
+            setPending(true)
             if (file.name) {
                 
                 const formPicture = new FormData();
@@ -51,6 +53,8 @@ export default function useAuth(){
             setTimeout(()=> {
                 navigate('/auth/profile');
             },100)
+
+            setPending(false)
             
         } catch (error) {
             errorSetter(error)
@@ -59,6 +63,7 @@ export default function useAuth(){
 
     const loginHandler = async (data) => {
         try {
+            setPending(true)
             const result = await login(data.email, data.password);
     
             authSetter({email: result.email, accessToken: result.accessToken, id: result._id, username: result.username});
@@ -66,7 +71,7 @@ export default function useAuth(){
             setTimeout(()=> {
                 navigate('/auth/profile');
             },100)
-            
+            setPending(false)
         } catch (error) {
             errorSetter(error)
         }
@@ -95,5 +100,6 @@ export default function useAuth(){
         registerHandler,
         loginHandler,
         logoutHandler,
+        isPending
     }
 }

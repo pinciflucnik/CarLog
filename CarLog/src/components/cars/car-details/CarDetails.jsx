@@ -22,15 +22,17 @@ export default function CarDetails() {
     const [odometer, setOdo] = useState(0);
     const { auth } = useContext(AuthContext)
     const { carId } = useParams();
-    const { isWatched, addToWatched } = useWatch(carId);
+    const { isWatched, addToWatched, isPending } = useWatch(carId);
     const { getOneHandler, deleteCarHandler } = useCars();
     const { getRefuelsAsc, getRefuelsDesc, calculateAvg, calculateLastAvg } = useRefuel();
     const { getLatestHandler, sumAll } = useMaintain();
 
 
     function onDelete(e) {
+        setPending(true)
         e.preventDefault()
         deleteCarHandler(carId, auth.accessToken);
+        setPending(false)
     }
 
 
@@ -134,8 +136,8 @@ export default function CarDetails() {
                                                     <p>Engine power: {car.power}HP</p>
                                                     <p>Fuel type: {car.fuel}</p>
                                                     {isOwner && <Link to={`/cars/${carId}/edit`} className="welcome-btn smaller">Edit</Link>}
-                                                    {isOwner && <button onClick={onDelete} className="welcome-btn smaller">Delete</button>}
-                                                    {auth.email && !isOwner && !isWatched && <button onClick={addToWatched} className="welcome-btn smaller">Watch</button>}
+                                                    {isOwner && <button onClick={onDelete} disabled={pending} className="welcome-btn smaller">Delete</button>}
+                                                    {auth.email && !isOwner && !isWatched && <button onClick={addToWatched} disabled={isPending} className="welcome-btn smaller">Watch</button>}
                                                     {auth.email && !isOwner && isWatched && <p className="special">In your watch list</p>}
                                                 </div>
                                             </div>
