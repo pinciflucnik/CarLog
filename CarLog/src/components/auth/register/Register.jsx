@@ -9,6 +9,7 @@ export default function Register() {
         password: '',
         rePass: '',
         username: '',
+        avatar: ''
     });
 
     return (
@@ -28,11 +29,6 @@ export default function Register() {
 
                     <label htmlFor="rePass">Confirm password:</label>
                     <input type="password" id="rePass" name="rePass" autoComplete="repeat-password" value={values.rePass} onChange={onChange} required />
-
-
-                    {/* SERVER DOESN'T SUPPORT THIS */}
-                    {/* <label htmlFor="picture">Upload profile picture:</label>
-                    <input type="file" id="picture" name="picture" value={values.picture} onChange={onFileSelect} /> */}
 
                     <button type="submit" disabled={isPending}>Login</button>
                 </form>

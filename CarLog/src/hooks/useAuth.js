@@ -15,7 +15,7 @@ export default function useAuth(){
     const [isPending, setPending] = useState(false)
     const navigate = useNavigate();
 
-    const registerHandler = async (data, file) => {
+    const registerHandler = async (data) => {
         
         
         if(data.password !== data.rePass){
@@ -24,28 +24,9 @@ export default function useAuth(){
         let formatedData = data
         try {
             setPending(true)
-            if (file.name) {
-                
-                const formPicture = new FormData();
-                formPicture.append("file", file);
-                formPicture.append("upload_preset", "profile_photos");
-
-                const response = await axios.post(`${CLOUDINARY_URL}`, formPicture);
-                const imageUrl = response.data.secure_url;
-                
-                formatedData = {
-                    ...formatedData,
-                    picture: imageUrl
-                }
-            } else {
-                formatedData = {
-                    ...formatedData,
-                    picture: 'https://res.cloudinary.com/dtwyysfkn/image/upload/v1741525990/xryrdd8hjapnzif3j8ie.jpg'
-                }
-      
-            }
-
-            const result = await register(data.email, data.password, data.username, formatedData.picture);
+            
+            console.log(formatedData);
+            const result = await register(data.email, data.password, data.username);
             
             
             authSetter({email: result.email, accessToken: result.accessToken, id: result._id, username: result.username});
