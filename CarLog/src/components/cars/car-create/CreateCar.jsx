@@ -4,7 +4,7 @@ import useForm from "../../../hooks/UseForm"
 import AuthContext from "../../../context/AuthContext";
 
 export default function CarCreate() {
-    const { addCarHandler } = useCars();
+    const { addCarHandler, isPending } = useCars();
     const { auth } = useContext(AuthContext);
     const { values, file, onFileSelect, onChange, onSubmit } = useForm((data) => addCarHandler(data, auth.accessToken, file),{
         make: '',
@@ -47,7 +47,7 @@ export default function CarCreate() {
                         <label htmlFor="picture">Picture:</label>
                         <input type="file" id="picture" name="picture" value={values.picture} onChange={onFileSelect} />
                         
-                        <button type="submit">Add Car</button>
+                        <button type="submit" disabled={isPending}>Add Car</button>
                     </form>
                 </div>
             </div>

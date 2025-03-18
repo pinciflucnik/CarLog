@@ -5,7 +5,7 @@ export default function CarEditMaintenance({
     repairId,
     modalHandler
 }) {
-    const {getSingleMaintenance, editMaintenance, setMyCurrent, current} = useMaintain();
+    const {getSingleMaintenance, editMaintenance, setMyCurrent, current, isPending} = useMaintain();
 
     useEffect(()=> {
         getSingleMaintenance(repairId)
@@ -39,7 +39,7 @@ export default function CarEditMaintenance({
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button type="submit" className="welcome-btn smaller">Save</button>
+                            <button type="submit" disabled={isPending} className="welcome-btn smaller">Save</button>
                             <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={modalHandler}>Close</button>
                         </div>
                     </form>

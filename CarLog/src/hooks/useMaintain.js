@@ -8,6 +8,7 @@ import maintenanceService from "../services/maintenanceService";
 export default function useMaintain(){
     const { auth } = useContext(AuthContext);
     const { errorSetter } = useContext(ErrorContext);
+    const [isPending, setIsPending] = useState(false)
     const navigate = useNavigate();
     const token = auth.accessToken;
     const [current, setCurrent] = useState({
@@ -20,9 +21,12 @@ export default function useMaintain(){
         data.title = data.title.toLowerCase();
         data.price = Number(data.price);
         try {
+            setIsPending(true)
             const result = await maintenanceService.create(data, token);
 
             navigate(`/cars/${carId}/details`);
+            setIsPending(false)
+
         } catch (error) {
             errorSetter(error);
         }
@@ -58,8 +62,11 @@ export default function useMaintain(){
     }  
     const deleteMaintenance = async (id, carId) => {
         try {
+            setIsPending(true)
             await maintenanceService.delete(id, token);
-            navigate(`/cars/${carId}/details`)            
+            navigate(`/cars/${carId}/details`) 
+            setIsPending(false)
+           
         } catch (error) {
             errorSetter(error)
         }
@@ -81,7 +88,9 @@ export default function useMaintain(){
         edited.price = Number(edited.price);
         const data = {...current, ...edited,};
         try {
+            setIsPending(true)
             const result = await maintenanceService.edit(current._id, data, auth.accessToken);
+            setIsPending(false)
             return result;
         } catch (error) {
             
@@ -99,6 +108,7 @@ export default function useMaintain(){
         setMyCurrent,
         editMaintenance,
         current,
+        isPending
     }
 
 }

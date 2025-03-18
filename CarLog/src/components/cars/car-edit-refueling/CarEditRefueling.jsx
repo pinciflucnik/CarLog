@@ -10,7 +10,7 @@ export default function CarEditRefueling({
 }) {
     const [refuel, setRefuel] = useState({});
     const { getCurrentRefuel } = useRefuel();
-    const { editRefuel } = useRefuel();
+    const { editRefuel, isPending } = useRefuel();
     const { auth } = useContext(AuthContext);
     const { errorSetter } = useContext(ErrorContext);
 
@@ -61,7 +61,7 @@ export default function CarEditRefueling({
                             </div>
                         </div>
                         <div className="modal-footer">
-                            <button type="submit" className="welcome-btn smaller">Edit</button>
+                            <button type="submit" disabled={isPending} className="welcome-btn smaller">Edit</button>
                             <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={modalHandler}>Close</button>
                         </div>
                     </form>

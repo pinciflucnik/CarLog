@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 
 export default function CarEdit() {
-    const { editCarHandler, getOneHandler } = useCars();
+    const { editCarHandler, getOneHandler, isPending } = useCars();
     const { auth } = useContext(AuthContext);
     const { carId } = useParams();
     const { values, file, onChange, onSubmit, onLoad } = useForm((data) => editCarHandler(data, auth.accessToken),{
@@ -53,7 +53,7 @@ export default function CarEdit() {
                         <label htmlFor="odometer">Odometer (km):</label>
                         <input type="number" id="odometer" name="odometer" value={values.odometer} onChange={onChange} required />
                         
-                        <button type="submit">Add Car</button>
+                        <button type="submit" disabled={isPending}>Edit Car</button>
                     </form>
                 </div>
             </div>

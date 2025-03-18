@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import * as cars from '../services/carService';
 import * as watchService from '../services/watchService';
 import ErrorContext from '../context/ErrorContext';
@@ -9,6 +9,7 @@ const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dtwyysfkn/image/upload'
 
 export default function useCars() {
     const { errorSetter } = useContext(ErrorContext);
+    const [ isPending, setIsPending] = useState(false);
     const navigate = useNavigate()
 
     const addCarHandler = async (data, token, file) => {
@@ -25,6 +26,7 @@ export default function useCars() {
 
 
         try {
+            setIsPending(true)
             if (file.name) {
                 const formPicture = new FormData();
                 formPicture.append("file", file);
@@ -49,7 +51,7 @@ export default function useCars() {
 
 
             navigate(`/cars/${newCar._id}/details`)
-
+            setIsPending(false)
         } catch (error) {
             errorSetter(error)
         }
@@ -60,8 +62,10 @@ export default function useCars() {
         carData.make = carData.make.toUpperCase();
         carData.model = carData.model.toUpperCase()
         try {
+            setIsPending(true)
             const editedCar = await cars.update(carData, token);
             navigate(`/cars/${editedCar._id}/details`)
+            setIsPending(false)
         } catch (error) {
             errorSetter(error);
         }
@@ -81,8 +85,10 @@ export default function useCars() {
     
     const getMyHandler = async (id) => {
         try {
+            setIsPending(true)
             const list = await cars.getMyCars(id)
             return list;
+            setIsPending(false)
             
         } catch (error) {
             errorSetter(error)
@@ -102,9 +108,11 @@ export default function useCars() {
 
     const deleteCarHandler = async (id, token) => {
         try {
+            setIsPending(true)
             await cars.remove(id, token);
             navigate('/cars')
-            
+            setIsPending(false)
+
         } catch (error) {
             errorSetter(error)
         }
@@ -119,5 +127,6 @@ export default function useCars() {
         getMyHandler,
         getOneHandler,
         deleteCarHandler,
+        isPending
     }
 }

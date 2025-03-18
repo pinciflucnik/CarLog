@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 
 export default function useRefuel() {
     const [refuels, setRefuels] = useState([]);
+    const [isPending, setIsPending] = useState(false);
     const { errorSetter } = useContext(ErrorContext);
     const navigate = useNavigate();
 
@@ -36,10 +37,11 @@ export default function useRefuel() {
         const data = { ...Object.fromEntries(formData) }
         const newRefuel = { ...data, carId, km: Number(data.km), liters: Number(data.liters) };
         try {
+            setIsPending(true)
             const result = await refuelService.create(newRefuel, token);
     
             setRefuels(state => [...state, result])
-            
+            setIsPending(false)
         } catch (error) {
             errorSetter(error)
         }
@@ -104,9 +106,10 @@ export default function useRefuel() {
     };
     const removeRefuel = async (id, token, carId) => {
         try {
+            setIsPending(true)
             await refuelService.delete(id, token);
             navigate(`/cars/${carId}/details`)
-            
+            setIsPending(false)
         } catch (error) {
            errorSetter(error) 
         }
@@ -128,7 +131,9 @@ export default function useRefuel() {
         }
         const edited = {...refuel, ...data}
         try {
+            setIsPending(true);
             await refuelService.edit(refuel._id, edited, token);
+            setIsPending(false)
         } catch (error) {
             errorSetter(error);
         }
@@ -145,6 +150,7 @@ export default function useRefuel() {
         removeRefuel,
         getCurrentRefuel,
         editRefuel,
+        isPending
     }
 
 }
