@@ -27,3 +27,8 @@ Authenticated users can:
     - Add entry to owned car's refuel/repair list
     - Edit/Delete entry to owned car's refuel/repair list
 
+
+You can find a refactored project deployed on https://carlog-rose.vercel.app/
+
+git repo for it is at - https://github.com/pinciflucnik/CarLog-for-back4app
+

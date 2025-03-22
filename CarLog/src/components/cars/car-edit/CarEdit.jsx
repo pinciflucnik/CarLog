@@ -29,7 +29,7 @@ export default function CarEdit() {
             <div className="col-md-4 col-sm-6">
                 <div className="form-container">
                     <form className="car-form" onSubmit={onSubmit}>
-                        <h2>Add New Car</h2>
+                        <h2>Edit Car</h2>
                         <label htmlFor="make">Make:</label>
                         <input type="text" id="make" name="make" value={values.make} onChange={onChange} required />
 
